@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class OpenUIFormFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 打开界面失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(OpenUIFormFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化打开界面失败事件的新实例。
         /// </summary>
         public OpenUIFormFailureEventArgs()
@@ -31,17 +26,6 @@ namespace UnityGameFramework.Runtime
             PauseCoveredUIForm = false;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取打开界面失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

@@ -17,11 +17,6 @@ namespace UnityGameFramework.Runtime
     public sealed class ShowEntitySuccessEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 显示实体成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(ShowEntitySuccessEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化显示实体成功事件的新实例。
         /// </summary>
         public ShowEntitySuccessEventArgs()
@@ -30,17 +25,6 @@ namespace UnityGameFramework.Runtime
             Entity = null;
             Duration = 0f;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取显示实体成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadDataTableFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载数据表失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(LoadDataTableFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化加载数据表失败事件的新实例。
         /// </summary>
         public LoadDataTableFailureEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             DataTableAssetName = null;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载数据表失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

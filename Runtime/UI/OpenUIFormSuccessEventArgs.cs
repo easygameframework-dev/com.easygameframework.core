@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class OpenUIFormSuccessEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 打开界面成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(OpenUIFormSuccessEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化打开界面成功事件的新实例。
         /// </summary>
         public OpenUIFormSuccessEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             UIForm = null;
             Duration = 0f;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取打开界面成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

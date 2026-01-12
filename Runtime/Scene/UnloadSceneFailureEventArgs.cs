@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class UnloadSceneFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载场景失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(UnloadSceneFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化卸载场景失败事件的新实例。
         /// </summary>
         public UnloadSceneFailureEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             PackageName = null;
             SceneAssetName = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载场景失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

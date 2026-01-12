@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadDictionarySuccessEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载字典成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(LoadDictionarySuccessEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化加载字典成功事件的新实例。
         /// </summary>
         public LoadDictionarySuccessEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             DictionaryAssetName = null;
             Duration = 0f;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载字典成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

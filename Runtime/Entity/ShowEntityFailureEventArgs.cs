@@ -17,11 +17,6 @@ namespace UnityGameFramework.Runtime
     public sealed class ShowEntityFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 显示实体失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(ShowEntityFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化显示实体失败事件的新实例。
         /// </summary>
         public ShowEntityFailureEventArgs()
@@ -32,17 +27,6 @@ namespace UnityGameFramework.Runtime
             EntityGroupName = null;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取显示实体失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

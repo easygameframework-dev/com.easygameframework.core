@@ -12,5 +12,19 @@ namespace GameFramework.Event
     /// </summary>
     public abstract class GameEventArgs : BaseEventArgs
     {
+        private int? m_Id = 0;
+        
+        public override int Id
+        {
+            get
+            {
+                if (m_Id == null)
+                {
+                    m_Id = EventHelper.GetEventId(GetType());
+                }
+                
+                return m_Id.Value;
+            }
+        }
     }
 }

@@ -18,11 +18,6 @@ namespace UnityGameFramework.Runtime
     public sealed class NetworkErrorEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 网络错误事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(NetworkErrorEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化网络错误事件的新实例。
         /// </summary>
         public NetworkErrorEventArgs()
@@ -30,17 +25,6 @@ namespace UnityGameFramework.Runtime
             NetworkChannel = null;
             ErrorCode = NetworkErrorCode.Unknown;
             ErrorMessage = null;
-        }
-
-        /// <summary>
-        /// 获取网络错误事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

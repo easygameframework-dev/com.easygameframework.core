@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadDictionaryFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载字典失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(LoadDictionaryFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化加载字典失败事件的新实例。
         /// </summary>
         public LoadDictionaryFailureEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             DictionaryAssetName = null;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载字典失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

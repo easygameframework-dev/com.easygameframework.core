@@ -17,28 +17,12 @@ namespace UnityGameFramework.Runtime
     public sealed class NetworkConnectedEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 网络连接成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化网络连接成功事件的新实例。
         /// </summary>
         public NetworkConnectedEventArgs()
         {
             NetworkChannel = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取网络连接成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

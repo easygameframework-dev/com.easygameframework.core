@@ -17,11 +17,6 @@ namespace UnityGameFramework.Runtime
     public sealed class PlaySoundFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 播放声音失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(PlaySoundFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化播放声音失败事件的新实例。
         /// </summary>
         public PlaySoundFailureEventArgs()
@@ -34,17 +29,6 @@ namespace UnityGameFramework.Runtime
             ErrorCode = 0;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取播放声音失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

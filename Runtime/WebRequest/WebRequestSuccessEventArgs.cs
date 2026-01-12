@@ -18,11 +18,6 @@ namespace UnityGameFramework.Runtime
         private byte[] m_WebResponseBytes = null;
 
         /// <summary>
-        /// Web 请求成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(WebRequestSuccessEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化 Web 请求成功事件的新实例。
         /// </summary>
         public WebRequestSuccessEventArgs()
@@ -31,17 +26,6 @@ namespace UnityGameFramework.Runtime
             WebRequestUri = null;
             m_WebResponseBytes = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取 Web 请求成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

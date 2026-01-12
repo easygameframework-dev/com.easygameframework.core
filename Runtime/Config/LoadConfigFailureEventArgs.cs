@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadConfigFailureEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载全局配置失败事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(LoadConfigFailureEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化加载全局配置失败事件的新实例。
         /// </summary>
         public LoadConfigFailureEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             ConfigAssetName = null;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载全局配置失败事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

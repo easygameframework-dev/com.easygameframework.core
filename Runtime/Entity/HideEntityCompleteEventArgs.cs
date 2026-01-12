@@ -17,11 +17,6 @@ namespace UnityGameFramework.Runtime
     public sealed class HideEntityCompleteEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 隐藏实体完成事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(HideEntityCompleteEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化隐藏实体完成事件的新实例。
         /// </summary>
         public HideEntityCompleteEventArgs()
@@ -30,17 +25,6 @@ namespace UnityGameFramework.Runtime
             EntityAssetName = null;
             EntityGroup = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取隐藏实体完成事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

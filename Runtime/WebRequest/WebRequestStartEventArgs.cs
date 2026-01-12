@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class WebRequestStartEventArgs : GameEventArgs
     {
         /// <summary>
-        /// Web 请求开始事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(WebRequestStartEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化 Web 请求开始事件的新实例。
         /// </summary>
         public WebRequestStartEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             SerialId = 0;
             WebRequestUri = null;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取 Web 请求开始事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

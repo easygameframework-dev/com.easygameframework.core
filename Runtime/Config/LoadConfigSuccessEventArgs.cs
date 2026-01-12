@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class LoadConfigSuccessEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 加载全局配置成功事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(LoadConfigSuccessEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化加载全局配置成功事件编号的新实例。
         /// </summary>
         public LoadConfigSuccessEventArgs()
@@ -28,17 +23,6 @@ namespace UnityGameFramework.Runtime
             ConfigAssetName = null;
             Duration = 0f;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取加载全局配置成功事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>

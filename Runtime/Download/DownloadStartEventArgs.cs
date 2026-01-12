@@ -16,11 +16,6 @@ namespace UnityGameFramework.Runtime
     public sealed class DownloadStartEventArgs : GameEventArgs
     {
         /// <summary>
-        /// 下载开始事件编号。
-        /// </summary>
-        public static readonly int EventId = typeof(DownloadStartEventArgs).GetHashCode();
-
-        /// <summary>
         /// 初始化下载开始事件的新实例。
         /// </summary>
         public DownloadStartEventArgs()
@@ -30,17 +25,6 @@ namespace UnityGameFramework.Runtime
             DownloadUri = null;
             CurrentLength = 0L;
             UserData = null;
-        }
-
-        /// <summary>
-        /// 获取下载开始事件编号。
-        /// </summary>
-        public override int Id
-        {
-            get
-            {
-                return EventId;
-            }
         }
 
         /// <summary>
