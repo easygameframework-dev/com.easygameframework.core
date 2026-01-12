@@ -5,8 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Download;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Download;
 using System;
 #if UNITY_5_4_OR_NEWER
 using UnityEngine.Networking;
@@ -14,7 +14,7 @@ using UnityEngine.Networking;
 using UnityEngine.Experimental.Networking;
 #endif
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public partial class UnityWebRequestDownloadAgentHelper : DownloadAgentHelperBase, IDisposable
     {

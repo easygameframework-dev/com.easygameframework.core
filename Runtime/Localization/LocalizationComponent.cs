@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Localization;
-using GameFramework.Resource;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Localization;
+using EasyGameFramework.Core.Resource;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 本地化组件。

@@ -6,12 +6,12 @@
 //------------------------------------------------------------
 
 using System;
-using GameFramework;
+using EasyGameFramework.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// 类型相关的实用函数。

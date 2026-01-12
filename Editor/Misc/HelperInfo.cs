@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     internal sealed class HelperInfo<T> where T : MonoBehaviour
     {

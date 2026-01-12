@@ -5,16 +5,16 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(ReferencePoolComponent))]
     internal sealed class ReferencePoolComponentInspector : GameFrameworkInspector

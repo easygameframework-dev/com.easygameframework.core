@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Config;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Config;
 using System;
 using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 默认全局配置辅助器。

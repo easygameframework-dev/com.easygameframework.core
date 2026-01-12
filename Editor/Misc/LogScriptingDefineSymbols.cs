@@ -7,7 +7,7 @@
 
 using UnityEditor;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// 日志脚本宏定义。

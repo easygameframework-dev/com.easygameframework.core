@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.DataTable;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.DataTable;
 using UnityEditor;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(DataTableComponent))]
     internal sealed class DataTableComponentInspector : GameFrameworkInspector

@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Debugger;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Debugger;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 调试器组件。

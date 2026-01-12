@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using System;
 using System.IO;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 对 BinaryReader 和 BinaryWriter 的扩展方法。

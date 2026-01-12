@@ -5,16 +5,16 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Resource;
-using GameFramework.Scene;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Resource;
+using EasyGameFramework.Core.Scene;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 场景组件。
@@ -380,7 +380,7 @@ namespace UnityGameFramework.Runtime
             RefreshMainCamera();
         }
 
-        private void OnLoadSceneSuccess(object sender, GameFramework.Scene.LoadSceneSuccessEventArgs e)
+        private void OnLoadSceneSuccess(object sender, EasyGameFramework.Core.Scene.LoadSceneSuccessEventArgs e)
         {
             //TODO unite packageName and assetName
             var address = new AssetAddress(e.PackageName, e.SceneAssetName);
@@ -394,14 +394,14 @@ namespace UnityGameFramework.Runtime
             RefreshSceneOrder();
         }
 
-        private void OnLoadSceneFailure(object sender, GameFramework.Scene.LoadSceneFailureEventArgs e)
+        private void OnLoadSceneFailure(object sender, EasyGameFramework.Core.Scene.LoadSceneFailureEventArgs e)
         {
             var address = new AssetAddress(e.PackageName, e.SceneAssetName);
             Log.Warning("Load scene failure, scene asset name '{0}', error message '{1}'.", address, e.ErrorMessage);
             m_EventComponent.Fire(this, LoadSceneFailureEventArgs.Create(e));
         }
 
-        private void OnUnloadSceneSuccess(object sender, GameFramework.Scene.UnloadSceneSuccessEventArgs e)
+        private void OnUnloadSceneSuccess(object sender, EasyGameFramework.Core.Scene.UnloadSceneSuccessEventArgs e)
         {
             var address = new AssetAddress(e.PackageName, e.SceneAssetName);
             m_SceneAssetNameToSceneName.Remove(address);
@@ -410,7 +410,7 @@ namespace UnityGameFramework.Runtime
             RefreshSceneOrder();
         }
 
-        private void OnUnloadSceneFailure(object sender, GameFramework.Scene.UnloadSceneFailureEventArgs e)
+        private void OnUnloadSceneFailure(object sender, EasyGameFramework.Core.Scene.UnloadSceneFailureEventArgs e)
         {
             var address = new AssetAddress(e.PackageName, e.SceneAssetName);
             Log.Warning("Unload scene failure, scene asset name '{0}'.", address);

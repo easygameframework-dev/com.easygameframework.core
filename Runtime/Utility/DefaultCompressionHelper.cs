@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using ICSharpCode.SharpZipLib.GZip;
 using System;
 using System.IO;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 默认压缩解压缩辅助器。

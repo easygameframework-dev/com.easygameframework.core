@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using System.Diagnostics;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 日志工具集。

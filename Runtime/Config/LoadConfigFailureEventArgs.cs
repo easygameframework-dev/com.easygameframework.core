@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 加载全局配置失败事件。

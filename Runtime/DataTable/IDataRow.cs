@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-namespace GameFramework.DataTable
+namespace EasyGameFramework.Core.DataTable
 {
     /// <summary>
     /// 数据表行接口。

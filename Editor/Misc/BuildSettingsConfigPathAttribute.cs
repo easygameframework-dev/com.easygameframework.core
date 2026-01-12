@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// BuildSettings 配置路径属性。

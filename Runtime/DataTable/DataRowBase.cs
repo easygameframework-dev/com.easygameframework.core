@@ -5,9 +5,9 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
+using EasyGameFramework.Core.DataTable;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 数据表行基类。

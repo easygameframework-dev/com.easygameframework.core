@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.WebRequest;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.WebRequest;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// Web 请求组件。
@@ -545,17 +545,17 @@ namespace UnityGameFramework.Runtime
             return m_WebRequestManager.AddWebRequest(webRequestUri, postData, tag, priority, WWWFormInfo.Create(wwwForm, userData));
         }
 
-        private void OnWebRequestStart(object sender, GameFramework.WebRequest.WebRequestStartEventArgs e)
+        private void OnWebRequestStart(object sender, EasyGameFramework.Core.WebRequest.WebRequestStartEventArgs e)
         {
             m_EventComponent.Fire(this, WebRequestStartEventArgs.Create(e));
         }
 
-        private void OnWebRequestSuccess(object sender, GameFramework.WebRequest.WebRequestSuccessEventArgs e)
+        private void OnWebRequestSuccess(object sender, EasyGameFramework.Core.WebRequest.WebRequestSuccessEventArgs e)
         {
             m_EventComponent.Fire(this, WebRequestSuccessEventArgs.Create(e));
         }
 
-        private void OnWebRequestFailure(object sender, GameFramework.WebRequest.WebRequestFailureEventArgs e)
+        private void OnWebRequestFailure(object sender, EasyGameFramework.Core.WebRequest.WebRequestFailureEventArgs e)
         {
             Log.Warning("Web request failure, web request serial id '{0}', web request uri '{1}', error message '{2}'.", e.SerialId, e.WebRequestUri, e.ErrorMessage);
             m_EventComponent.Fire(this, WebRequestFailureEventArgs.Create(e));

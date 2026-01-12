@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.DataTable;
-using GameFramework.Resource;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.DataTable;
+using EasyGameFramework.Core.Resource;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 数据表组件。

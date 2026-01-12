@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.WebRequest;
+using EasyGameFramework.Core.WebRequest;
 using System;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// Web 请求代理辅助器基类。

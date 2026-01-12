@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Fsm;
-using GameFramework.Procedure;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Fsm;
+using EasyGameFramework.Core.Procedure;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 流程组件。

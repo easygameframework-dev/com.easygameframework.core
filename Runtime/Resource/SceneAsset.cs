@@ -5,7 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     internal sealed class SceneAsset
     {

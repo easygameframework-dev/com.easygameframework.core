@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 游戏框架组件抽象类。

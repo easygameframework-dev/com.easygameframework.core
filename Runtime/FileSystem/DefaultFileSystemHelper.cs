@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.FileSystem;
+using EasyGameFramework.Core.FileSystem;
 using System;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 默认文件系统辅助器。

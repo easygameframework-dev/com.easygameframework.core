@@ -6,9 +6,9 @@
 //------------------------------------------------------------
 
 using UnityEditor;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(SoundComponent))]
     internal sealed class SoundComponentInspector : GameFrameworkInspector

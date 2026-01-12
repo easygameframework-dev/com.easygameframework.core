@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.Procedure;
+using EasyGameFramework.Core.Procedure;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(ProcedureComponent))]
     internal sealed class ProcedureComponentInspector : GameFrameworkInspector

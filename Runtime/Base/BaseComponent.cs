@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Localization;
-using GameFramework.Resource;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Localization;
+using EasyGameFramework.Core.Resource;
 using System;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 基础组件。
@@ -162,8 +162,8 @@ namespace UnityGameFramework.Runtime
             InitTextHelper();
             InitVersionHelper();
             InitLogHelper();
-            Log.Info("Game Framework Version: {0}", GameFramework.Version.GameFrameworkVersion);
-            Log.Info("Game Version: {0} ({1})", GameFramework.Version.GameVersion, GameFramework.Version.InternalGameVersion);
+            Log.Info("Game Framework Version: {0}", EasyGameFramework.Core.Version.GameFrameworkVersion);
+            Log.Info("Game Version: {0} ({1})", EasyGameFramework.Core.Version.GameVersion, EasyGameFramework.Core.Version.InternalGameVersion);
             Log.Info("Unity Version: {0}", Application.unityVersion);
 
 #if UNITY_5_3_OR_NEWER || UNITY_5_3
@@ -293,13 +293,13 @@ namespace UnityGameFramework.Runtime
                 throw new GameFrameworkException(Utility.Text.Format("Can not find version helper type '{0}'.", m_VersionHelperTypeName));
             }
 
-            GameFramework.Version.IVersionHelper versionHelper = (GameFramework.Version.IVersionHelper)Activator.CreateInstance(versionHelperType);
+            EasyGameFramework.Core.Version.IVersionHelper versionHelper = (EasyGameFramework.Core.Version.IVersionHelper)Activator.CreateInstance(versionHelperType);
             if (versionHelper == null)
             {
                 throw new GameFrameworkException(Utility.Text.Format("Can not create version helper instance '{0}'.", m_VersionHelperTypeName));
             }
 
-            GameFramework.Version.SetVersionHelper(versionHelper);
+            EasyGameFramework.Core.Version.SetVersionHelper(versionHelper);
         }
 
         private void InitLogHelper()

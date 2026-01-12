@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 打开界面失败事件。
@@ -87,7 +87,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的打开界面失败事件。</returns>
-        public static OpenUIFormFailureEventArgs Create(GameFramework.UI.OpenUIFormFailureEventArgs e)
+        public static OpenUIFormFailureEventArgs Create(EasyGameFramework.Core.UI.OpenUIFormFailureEventArgs e)
         {
             OpenUIFormFailureEventArgs openUIFormFailureEventArgs = ReferencePool.Acquire<OpenUIFormFailureEventArgs>();
             openUIFormFailureEventArgs.SerialId = e.SerialId;

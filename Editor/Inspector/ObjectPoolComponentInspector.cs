@@ -5,17 +5,17 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.ObjectPool;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(ObjectPoolComponent))]
     internal sealed class ObjectPoolComponentInspector : GameFrameworkInspector

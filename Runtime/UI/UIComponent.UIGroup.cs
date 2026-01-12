@@ -8,7 +8,7 @@
 using System;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public sealed partial class UIComponent : GameFrameworkComponent
     {

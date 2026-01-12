@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.DataNode;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.DataNode;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 数据结点组件。

@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Network;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Network;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public sealed partial class DebuggerComponent : GameFrameworkComponent
     {

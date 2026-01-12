@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// Web 请求开始事件。
@@ -57,7 +57,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的 Web 请求开始事件。</returns>
-        public static WebRequestStartEventArgs Create(GameFramework.WebRequest.WebRequestStartEventArgs e)
+        public static WebRequestStartEventArgs Create(EasyGameFramework.Core.WebRequest.WebRequestStartEventArgs e)
         {
             WWWFormInfo wwwFormInfo = (WWWFormInfo)e.UserData;
             WebRequestStartEventArgs webRequestStartEventArgs = ReferencePool.Acquire<WebRequestStartEventArgs>();

@@ -8,7 +8,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// 脚本宏定义。

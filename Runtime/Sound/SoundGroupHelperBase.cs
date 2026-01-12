@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.Sound;
+using EasyGameFramework.Core.Sound;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 声音组辅助器基类。

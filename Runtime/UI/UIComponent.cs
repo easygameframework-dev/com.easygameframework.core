@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.ObjectPool;
-using GameFramework.Resource;
-using GameFramework.UI;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.ObjectPool;
+using EasyGameFramework.Core.Resource;
+using EasyGameFramework.Core.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 界面组件。
@@ -586,12 +586,12 @@ namespace UnityGameFramework.Runtime
             m_UIManager.SetUIFormInstancePriority(uiForm.gameObject, priority);
         }
 
-        private void OnOpenUIFormSuccess(object sender, GameFramework.UI.OpenUIFormSuccessEventArgs e)
+        private void OnOpenUIFormSuccess(object sender, EasyGameFramework.Core.UI.OpenUIFormSuccessEventArgs e)
         {
             m_EventComponent.Fire(this, OpenUIFormSuccessEventArgs.Create(e));
         }
 
-        private void OnOpenUIFormFailure(object sender, GameFramework.UI.OpenUIFormFailureEventArgs e)
+        private void OnOpenUIFormFailure(object sender, EasyGameFramework.Core.UI.OpenUIFormFailureEventArgs e)
         {
             Log.Warning("Open UI form failure, asset name '{0}', UI group name '{1}', pause covered UI form '{2}', error message '{3}'.", e.UIFormAssetName, e.UIGroupName, e.PauseCoveredUIForm, e.ErrorMessage);
             if (m_EnableOpenUIFormFailureEvent)
@@ -600,7 +600,7 @@ namespace UnityGameFramework.Runtime
             }
         }
 
-        private void OnCloseUIFormComplete(object sender, GameFramework.UI.CloseUIFormCompleteEventArgs e)
+        private void OnCloseUIFormComplete(object sender, EasyGameFramework.Core.UI.CloseUIFormCompleteEventArgs e)
         {
             m_EventComponent.Fire(this, CloseUIFormCompleteEventArgs.Create(e));
         }

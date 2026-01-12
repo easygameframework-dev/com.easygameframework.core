@@ -5,17 +5,17 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Download;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Download;
 using System;
 #if UNITY_5_4_OR_NEWER
 using UnityEngine.Networking;
 #else
 using UnityEngine.Experimental.Networking;
 #endif
-using Utility = GameFramework.Utility;
+using Utility = EasyGameFramework.Core.Utility;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 使用 UnityWebRequest 实现的下载代理辅助器。

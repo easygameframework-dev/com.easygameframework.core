@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
-using GameFramework.Network;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Network;
 using System.Net.Sockets;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 网络错误事件。
@@ -68,7 +68,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的网络错误事件。</returns>
-        public static NetworkErrorEventArgs Create(GameFramework.Network.NetworkErrorEventArgs e)
+        public static NetworkErrorEventArgs Create(EasyGameFramework.Core.Network.NetworkErrorEventArgs e)
         {
             NetworkErrorEventArgs networkErrorEventArgs = ReferencePool.Acquire<NetworkErrorEventArgs>();
             networkErrorEventArgs.NetworkChannel = e.NetworkChannel;

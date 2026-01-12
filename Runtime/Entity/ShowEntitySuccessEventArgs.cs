@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 using System;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 显示实体成功事件。
@@ -68,7 +68,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的显示实体成功事件。</returns>
-        public static ShowEntitySuccessEventArgs Create(GameFramework.Entity.ShowEntitySuccessEventArgs e)
+        public static ShowEntitySuccessEventArgs Create(EasyGameFramework.Core.Entity.ShowEntitySuccessEventArgs e)
         {
             ShowEntityInfo showEntityInfo = (ShowEntityInfo)e.UserData;
             ShowEntitySuccessEventArgs showEntitySuccessEventArgs = ReferencePool.Acquire<ShowEntitySuccessEventArgs>();

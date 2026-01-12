@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public sealed partial class DebuggerComponent : GameFrameworkComponent
     {

@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// 构建配置相关的实用函数。

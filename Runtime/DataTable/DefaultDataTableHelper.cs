@@ -5,14 +5,14 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.DataTable;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.DataTable;
 using System;
 using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 默认数据表辅助器。

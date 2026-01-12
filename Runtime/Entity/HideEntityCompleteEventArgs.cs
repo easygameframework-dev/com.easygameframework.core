@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Entity;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Entity;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 隐藏实体完成事件。
@@ -68,7 +68,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的隐藏实体完成事件。</returns>
-        public static HideEntityCompleteEventArgs Create(GameFramework.Entity.HideEntityCompleteEventArgs e)
+        public static HideEntityCompleteEventArgs Create(EasyGameFramework.Core.Entity.HideEntityCompleteEventArgs e)
         {
             HideEntityCompleteEventArgs hideEntityCompleteEventArgs = ReferencePool.Acquire<HideEntityCompleteEventArgs>();
             hideEntityCompleteEventArgs.EntityId = e.EntityId;

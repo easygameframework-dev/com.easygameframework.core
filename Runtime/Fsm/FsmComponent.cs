@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Fsm;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Fsm;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 有限状态机组件。

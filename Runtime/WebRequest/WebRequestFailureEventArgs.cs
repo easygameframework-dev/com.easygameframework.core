@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// Web 请求失败事件。
@@ -67,7 +67,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的 Web 请求失败事件。</returns>
-        public static WebRequestFailureEventArgs Create(GameFramework.WebRequest.WebRequestFailureEventArgs e)
+        public static WebRequestFailureEventArgs Create(EasyGameFramework.Core.WebRequest.WebRequestFailureEventArgs e)
         {
             WWWFormInfo wwwFormInfo = (WWWFormInfo)e.UserData;
             WebRequestFailureEventArgs webRequestFailureEventArgs = ReferencePool.Acquire<WebRequestFailureEventArgs>();

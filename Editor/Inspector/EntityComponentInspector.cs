@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Entity;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Entity;
 using UnityEditor;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(EntityComponent))]
     internal sealed class EntityComponentInspector : GameFrameworkInspector

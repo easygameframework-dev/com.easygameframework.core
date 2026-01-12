@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 实体逻辑基类。

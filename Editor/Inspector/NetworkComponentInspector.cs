@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Network;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Network;
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(NetworkComponent))]
     internal sealed class NetworkComponentInspector : GameFrameworkInspector

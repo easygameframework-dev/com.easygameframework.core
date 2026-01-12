@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 下载更新事件。
@@ -77,7 +77,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的下载更新事件。</returns>
-        public static DownloadUpdateEventArgs Create(GameFramework.Download.DownloadUpdateEventArgs e)
+        public static DownloadUpdateEventArgs Create(EasyGameFramework.Core.Download.DownloadUpdateEventArgs e)
         {
             DownloadUpdateEventArgs downloadUpdateEventArgs = ReferencePool.Acquire<DownloadUpdateEventArgs>();
             downloadUpdateEventArgs.SerialId = e.SerialId;

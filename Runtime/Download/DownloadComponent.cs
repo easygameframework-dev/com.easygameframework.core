@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Download;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Download;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 下载组件。
@@ -385,22 +385,22 @@ namespace UnityGameFramework.Runtime
             m_DownloadManager.AddDownloadAgentHelper(downloadAgentHelper);
         }
 
-        private void OnDownloadStart(object sender, GameFramework.Download.DownloadStartEventArgs e)
+        private void OnDownloadStart(object sender, EasyGameFramework.Core.Download.DownloadStartEventArgs e)
         {
             m_EventComponent.Fire(this, DownloadStartEventArgs.Create(e));
         }
 
-        private void OnDownloadUpdate(object sender, GameFramework.Download.DownloadUpdateEventArgs e)
+        private void OnDownloadUpdate(object sender, EasyGameFramework.Core.Download.DownloadUpdateEventArgs e)
         {
             m_EventComponent.Fire(this, DownloadUpdateEventArgs.Create(e));
         }
 
-        private void OnDownloadSuccess(object sender, GameFramework.Download.DownloadSuccessEventArgs e)
+        private void OnDownloadSuccess(object sender, EasyGameFramework.Core.Download.DownloadSuccessEventArgs e)
         {
             m_EventComponent.Fire(this, DownloadSuccessEventArgs.Create(e));
         }
 
-        private void OnDownloadFailure(object sender, GameFramework.Download.DownloadFailureEventArgs e)
+        private void OnDownloadFailure(object sender, EasyGameFramework.Core.Download.DownloadFailureEventArgs e)
         {
             Log.Warning("Download failure, download serial id '{0}', download path '{1}', download uri '{2}', error message '{3}'.", e.SerialId, e.DownloadPath, e.DownloadUri, e.ErrorMessage);
             m_EventComponent.Fire(this, DownloadFailureEventArgs.Create(e));

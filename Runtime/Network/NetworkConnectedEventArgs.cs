@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
-using GameFramework.Network;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Network;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 网络连接成功事件。
@@ -48,7 +48,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的网络连接成功事件。</returns>
-        public static NetworkConnectedEventArgs Create(GameFramework.Network.NetworkConnectedEventArgs e)
+        public static NetworkConnectedEventArgs Create(EasyGameFramework.Core.Network.NetworkConnectedEventArgs e)
         {
             NetworkConnectedEventArgs networkConnectedEventArgs = ReferencePool.Acquire<NetworkConnectedEventArgs>();
             networkConnectedEventArgs.NetworkChannel = e.NetworkChannel;

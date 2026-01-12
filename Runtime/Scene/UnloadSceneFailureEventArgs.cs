@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 卸载场景失败事件。
@@ -57,7 +57,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的卸载场景失败事件。</returns>
-        public static UnloadSceneFailureEventArgs Create(GameFramework.Scene.UnloadSceneFailureEventArgs e)
+        public static UnloadSceneFailureEventArgs Create(EasyGameFramework.Core.Scene.UnloadSceneFailureEventArgs e)
         {
             UnloadSceneFailureEventArgs unloadSceneFailureEventArgs = ReferencePool.Acquire<UnloadSceneFailureEventArgs>();
             unloadSceneFailureEventArgs.PackageName = e.PackageName;

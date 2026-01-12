@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataNode;
+using EasyGameFramework.Core.DataNode;
 using UnityEditor;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(DataNodeComponent))]
     internal sealed class DataNodeComponentInspector : GameFrameworkInspector

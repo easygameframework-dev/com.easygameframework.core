@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 下载成功事件。
@@ -77,7 +77,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的下载成功事件。</returns>
-        public static DownloadSuccessEventArgs Create(GameFramework.Download.DownloadSuccessEventArgs e)
+        public static DownloadSuccessEventArgs Create(EasyGameFramework.Core.Download.DownloadSuccessEventArgs e)
         {
             DownloadSuccessEventArgs downloadSuccessEventArgs = ReferencePool.Acquire<DownloadSuccessEventArgs>();
             downloadSuccessEventArgs.SerialId = e.SerialId;

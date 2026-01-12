@@ -7,9 +7,9 @@
 
 using UnityEditor;
 using UnityEngine;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(DebuggerComponent))]
     internal sealed class DebuggerComponentInspector : GameFrameworkInspector

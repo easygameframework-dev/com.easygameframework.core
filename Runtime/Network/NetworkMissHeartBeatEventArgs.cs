@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
-using GameFramework.Network;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Network;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 网络心跳包丢失事件。
@@ -48,7 +48,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的网络心跳包丢失事件。</returns>
-        public static NetworkMissHeartBeatEventArgs Create(GameFramework.Network.NetworkMissHeartBeatEventArgs e)
+        public static NetworkMissHeartBeatEventArgs Create(EasyGameFramework.Core.Network.NetworkMissHeartBeatEventArgs e)
         {
             NetworkMissHeartBeatEventArgs networkMissHeartBeatEventArgs = ReferencePool.Acquire<NetworkMissHeartBeatEventArgs>();
             networkMissHeartBeatEventArgs.NetworkChannel = e.NetworkChannel;

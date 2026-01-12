@@ -1,8 +1,8 @@
 ﻿using System;
-using GameFramework;
-using GameFramework.DataTable;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.DataTable;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public class DefaultDataRowHelperResolver : DataRowHelperResolverBase
     {

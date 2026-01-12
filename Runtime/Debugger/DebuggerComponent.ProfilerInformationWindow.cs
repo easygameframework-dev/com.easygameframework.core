@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
+using EasyGameFramework.Core;
 using UnityEngine;
 #if UNITY_5_5_OR_NEWER
 using UnityEngine.Profiling;
 #endif
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public sealed partial class DebuggerComponent : GameFrameworkComponent
     {

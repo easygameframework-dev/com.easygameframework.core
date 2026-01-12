@@ -5,13 +5,13 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.FileSystem;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.FileSystem;
 using System;
 using System.IO;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 安卓文件系统流。

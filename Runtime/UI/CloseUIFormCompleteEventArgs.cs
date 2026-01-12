@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
-using GameFramework.UI;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.UI;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 关闭界面完成事件。
@@ -68,7 +68,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的关闭界面完成事件。</returns>
-        public static CloseUIFormCompleteEventArgs Create(GameFramework.UI.CloseUIFormCompleteEventArgs e)
+        public static CloseUIFormCompleteEventArgs Create(EasyGameFramework.Core.UI.CloseUIFormCompleteEventArgs e)
         {
             CloseUIFormCompleteEventArgs closeUIFormCompleteEventArgs = ReferencePool.Acquire<CloseUIFormCompleteEventArgs>();
             closeUIFormCompleteEventArgs.SerialId = e.SerialId;

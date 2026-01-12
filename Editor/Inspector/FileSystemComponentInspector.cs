@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.FileSystem;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.FileSystem;
 using UnityEditor;
-using UnityGameFramework.Runtime;
+using EasyGameFramework;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     [CustomEditor(typeof(FileSystemComponent))]
     internal sealed class FileSystemComponentInspector : GameFrameworkInspector

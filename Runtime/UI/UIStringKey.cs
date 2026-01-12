@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 界面字符型主键。

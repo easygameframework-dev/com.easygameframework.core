@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Config;
-using GameFramework.Resource;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Config;
+using EasyGameFramework.Core.Resource;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 全局配置组件。

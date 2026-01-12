@@ -5,11 +5,11 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
-using GameFramework.Sound;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Sound;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 播放声音成功事件。
@@ -88,7 +88,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的播放声音成功事件。</returns>
-        public static PlaySoundSuccessEventArgs Create(GameFramework.Sound.PlaySoundSuccessEventArgs e)
+        public static PlaySoundSuccessEventArgs Create(EasyGameFramework.Core.Sound.PlaySoundSuccessEventArgs e)
         {
             PlaySoundInfo playSoundInfo = (PlaySoundInfo)e.UserData;
             PlaySoundSuccessEventArgs playSoundSuccessEventArgs = ReferencePool.Acquire<PlaySoundSuccessEventArgs>();

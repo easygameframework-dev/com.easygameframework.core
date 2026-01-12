@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 加载场景失败事件。
@@ -67,7 +67,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的加载场景失败事件。</returns>
-        public static LoadSceneFailureEventArgs Create(GameFramework.Scene.LoadSceneFailureEventArgs e)
+        public static LoadSceneFailureEventArgs Create(EasyGameFramework.Core.Scene.LoadSceneFailureEventArgs e)
         {
             LoadSceneFailureEventArgs loadSceneFailureEventArgs = ReferencePool.Acquire<LoadSceneFailureEventArgs>();
             loadSceneFailureEventArgs.PackageName = e.PackageName;

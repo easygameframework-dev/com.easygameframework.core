@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 打开界面成功事件。
@@ -57,7 +57,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的打开界面成功事件。</returns>
-        public static OpenUIFormSuccessEventArgs Create(GameFramework.UI.OpenUIFormSuccessEventArgs e)
+        public static OpenUIFormSuccessEventArgs Create(EasyGameFramework.Core.UI.OpenUIFormSuccessEventArgs e)
         {
             OpenUIFormSuccessEventArgs openUIFormSuccessEventArgs = ReferencePool.Acquire<OpenUIFormSuccessEventArgs>();
             openUIFormSuccessEventArgs.UIForm = (UIForm)e.UIForm;

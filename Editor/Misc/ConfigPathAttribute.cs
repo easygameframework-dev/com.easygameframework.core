@@ -7,7 +7,7 @@
 
 using System;
 
-namespace UnityGameFramework.Editor
+namespace EasyGameFramework.Editor
 {
     /// <summary>
     /// 配置路径属性。

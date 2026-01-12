@@ -5,10 +5,10 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Event;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 下载开始事件。
@@ -77,7 +77,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="e">内部事件。</param>
         /// <returns>创建的下载开始事件。</returns>
-        public static DownloadStartEventArgs Create(GameFramework.Download.DownloadStartEventArgs e)
+        public static DownloadStartEventArgs Create(EasyGameFramework.Core.Download.DownloadStartEventArgs e)
         {
             DownloadStartEventArgs downloadStartEventArgs = ReferencePool.Acquire<DownloadStartEventArgs>();
             downloadStartEventArgs.SerialId = e.SerialId;

@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.FileSystem;
-using GameFramework.Resource;
+using EasyGameFramework.Core.FileSystem;
+using EasyGameFramework.Core.Resource;
 using System;
 using UnityEngine;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 加载资源代理辅助器基类。

@@ -1,6 +1,6 @@
-﻿using GameFramework.DataTable;
+﻿using EasyGameFramework.Core.DataTable;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     public class DefaultDataRowHelper<T> : DataRowHelperBase<T>
         where T : IDataRow, new()

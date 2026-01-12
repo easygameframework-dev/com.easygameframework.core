@@ -5,17 +5,17 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Download;
-using GameFramework.FileSystem;
-using GameFramework.ObjectPool;
-using GameFramework.Resource;
+using EasyGameFramework.Core;
+using EasyGameFramework.Core.Download;
+using EasyGameFramework.Core.FileSystem;
+using EasyGameFramework.Core.ObjectPool;
+using EasyGameFramework.Core.Resource;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using PlayMode = GameFramework.Resource.PlayMode;
+using PlayMode = EasyGameFramework.Core.Resource.PlayMode;
 
-namespace UnityGameFramework.Runtime
+namespace EasyGameFramework
 {
     /// <summary>
     /// 资源组件。
