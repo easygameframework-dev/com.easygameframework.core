@@ -1,7 +1,7 @@
 {
-    "name": "EasyGameFramework.Core.Editor",
+    "name": "EasyGameFramework.Editor",
     "references": [
-        "EasyGameFramework.Core.Runtime"
+        "EasyGameFramework.Runtime"
     ],
     "includePlatforms": [
         "Editor"

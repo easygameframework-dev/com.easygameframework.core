@@ -1,7 +1,7 @@
 {
-  "name": "com.easygameframework.core",
+  "name": "com.easygameframework",
   "version": "1.0.0",
-  "displayName": "EasyGameFramework Core",
+  "displayName": "EasyGameFramework",
   "description": "",
   "unity": "2022.3",
   "unityRelease": "55f1",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/easygameframework-dev/com.easygameframework.core"
+    "url": "https://github.com/easygameframework-dev/com.easygameframework"
   },
   "dependencies": {
     "org.icsharpcode.sharpziplib": "1.4.1"
