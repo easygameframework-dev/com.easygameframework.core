@@ -308,14 +308,13 @@ namespace EasyGameFramework.Core.Sound
         /// <summary>
         /// 播放声音。
         /// </summary>
-        /// <param name="soundAssetName">声音资源名称。</param>
+        /// <param name="soundAssetAddress">声音资源地址。</param>
         /// <param name="soundGroupName">声音组名称。</param>
-        /// <param name="packageName">资源包名称。</param>
         /// <param name="customPriority">加载声音资源的优先级。</param>
         /// <param name="playSoundParams">播放声音参数。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>声音的序列编号。</returns>
-        public int PlaySound(string soundAssetName, string soundGroupName, string packageName, PlaySoundParams playSoundParams = null, int? customPriority = null, object userData = null)
+        public int PlaySound(AssetAddress soundAssetAddress, string soundGroupName, PlaySoundParams playSoundParams = null, int? customPriority = null, object userData = null)
         {
             if (m_ResourceManager == null)
             {
@@ -351,7 +350,7 @@ namespace EasyGameFramework.Core.Sound
             {
                 if (m_PlaySoundFailureEventHandler != null)
                 {
-                    PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(serialId, soundAssetName, soundGroupName, playSoundParams, errorCode.Value, errorMessage, userData);
+                    PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(serialId, soundAssetAddress, soundGroupName, playSoundParams, errorCode.Value, errorMessage, userData);
                     m_PlaySoundFailureEventHandler(this, playSoundFailureEventArgs);
                     ReferencePool.Release(playSoundFailureEventArgs);
 
@@ -369,9 +368,12 @@ namespace EasyGameFramework.Core.Sound
             m_SoundsBeingLoaded.Add(serialId);
 
             // Use AssetAddress for resource loading
-            string actualPackageName = string.IsNullOrEmpty(packageName) ? "DefaultPackage" : packageName;
-            var assetAddress = new AssetAddress(actualPackageName, soundAssetName);
-            m_ResourceManager.LoadAsset(assetAddress, m_LoadAssetCallbacks, null, customPriority, PlaySoundInfo.Create(serialId, soundGroup, playSoundParams, userData));
+            AssetAddress loadAddress = soundAssetAddress;
+            if (string.IsNullOrEmpty(soundAssetAddress.PackageName))
+            {
+                loadAddress = new AssetAddress("DefaultPackage", soundAssetAddress.Location);
+            }
+            m_ResourceManager.LoadAsset(loadAddress, m_LoadAssetCallbacks, null, customPriority, PlaySoundInfo.Create(serialId, soundGroup, playSoundParams, userData));
             return serialId;
         }
 
@@ -504,6 +506,9 @@ namespace EasyGameFramework.Core.Sound
                 throw new GameFrameworkException("Play sound info is invalid.");
             }
 
+            // Reconstruct AssetAddress from callback parameters
+            AssetAddress soundAssetAddress = new AssetAddress(packageName, soundAssetName);
+
             if (m_SoundsToReleaseOnLoad.Contains(playSoundInfo.SerialId))
             {
                 m_SoundsToReleaseOnLoad.Remove(playSoundInfo.SerialId);
@@ -525,7 +530,7 @@ namespace EasyGameFramework.Core.Sound
             {
                 if (m_PlaySoundSuccessEventHandler != null)
                 {
-                    PlaySoundSuccessEventArgs playSoundSuccessEventArgs = PlaySoundSuccessEventArgs.Create(playSoundInfo.SerialId, soundAssetName, soundAgent, duration, playSoundInfo.UserData);
+                    PlaySoundSuccessEventArgs playSoundSuccessEventArgs = PlaySoundSuccessEventArgs.Create(playSoundInfo.SerialId, soundAssetAddress, soundAgent, duration, playSoundInfo.UserData);
                     m_PlaySoundSuccessEventHandler(this, playSoundSuccessEventArgs);
                     ReferencePool.Release(playSoundSuccessEventArgs);
                 }
@@ -544,7 +549,7 @@ namespace EasyGameFramework.Core.Sound
             string errorMessage = Utility.Text.Format("Sound group '{0}' play sound '{1}' failure.", playSoundInfo.SoundGroup.Name, soundAssetName);
             if (m_PlaySoundFailureEventHandler != null)
             {
-                PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(playSoundInfo.SerialId, soundAssetName, playSoundInfo.SoundGroup.Name, playSoundInfo.PlaySoundParams, errorCode.Value, errorMessage, playSoundInfo.UserData);
+                PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(playSoundInfo.SerialId, soundAssetAddress, playSoundInfo.SoundGroup.Name, playSoundInfo.PlaySoundParams, errorCode.Value, errorMessage, playSoundInfo.UserData);
                 m_PlaySoundFailureEventHandler(this, playSoundFailureEventArgs);
                 ReferencePool.Release(playSoundFailureEventArgs);
 
@@ -574,6 +579,9 @@ namespace EasyGameFramework.Core.Sound
                 throw new GameFrameworkException("Play sound info is invalid.");
             }
 
+            // Reconstruct AssetAddress from callback parameters
+            AssetAddress soundAssetAddress = new AssetAddress(packageName, soundAssetName);
+
             if (m_SoundsToReleaseOnLoad.Contains(playSoundInfo.SerialId))
             {
                 m_SoundsToReleaseOnLoad.Remove(playSoundInfo.SerialId);
@@ -589,7 +597,7 @@ namespace EasyGameFramework.Core.Sound
             string appendErrorMessage = Utility.Text.Format("Load sound failure, asset name '{0}', status '{1}', error message '{2}'.", soundAssetName, status, errorMessage);
             if (m_PlaySoundFailureEventHandler != null)
             {
-                PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(playSoundInfo.SerialId, soundAssetName, playSoundInfo.SoundGroup.Name, playSoundInfo.PlaySoundParams, PlaySoundErrorCode.LoadAssetFailure, appendErrorMessage, playSoundInfo.UserData);
+                PlaySoundFailureEventArgs playSoundFailureEventArgs = PlaySoundFailureEventArgs.Create(playSoundInfo.SerialId, soundAssetAddress, playSoundInfo.SoundGroup.Name, playSoundInfo.PlaySoundParams, PlaySoundErrorCode.LoadAssetFailure, appendErrorMessage, playSoundInfo.UserData);
                 m_PlaySoundFailureEventHandler(this, playSoundFailureEventArgs);
                 ReferencePool.Release(playSoundFailureEventArgs);
 

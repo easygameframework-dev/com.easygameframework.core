@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.Sound
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace EasyGameFramework.Core.Sound
         public PlaySoundSuccessEventArgs()
         {
             SerialId = 0;
-            SoundAssetName = null;
+            SoundAssetAddress = AssetAddress.Empty;
             SoundAgent = null;
             Duration = 0f;
             UserData = null;
@@ -34,9 +36,9 @@ namespace EasyGameFramework.Core.Sound
         }
 
         /// <summary>
-        /// 获取声音资源名称。
+        /// 获取声音资源地址。
         /// </summary>
-        public string SoundAssetName
+        public AssetAddress SoundAssetAddress
         {
             get;
             private set;
@@ -73,16 +75,16 @@ namespace EasyGameFramework.Core.Sound
         /// 创建播放声音成功事件。
         /// </summary>
         /// <param name="serialId">声音的序列编号。</param>
-        /// <param name="soundAssetName">声音资源名称。</param>
+        /// <param name="soundAssetAddress">声音资源地址。</param>
         /// <param name="soundAgent">用于播放的声音代理。</param>
         /// <param name="duration">加载持续时间。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>创建的播放声音成功事件。</returns>
-        public static PlaySoundSuccessEventArgs Create(int serialId, string soundAssetName, ISoundAgent soundAgent, float duration, object userData)
+        public static PlaySoundSuccessEventArgs Create(int serialId, AssetAddress soundAssetAddress, ISoundAgent soundAgent, float duration, object userData)
         {
             PlaySoundSuccessEventArgs playSoundSuccessEventArgs = ReferencePool.Acquire<PlaySoundSuccessEventArgs>();
             playSoundSuccessEventArgs.SerialId = serialId;
-            playSoundSuccessEventArgs.SoundAssetName = soundAssetName;
+            playSoundSuccessEventArgs.SoundAssetAddress = soundAssetAddress;
             playSoundSuccessEventArgs.SoundAgent = soundAgent;
             playSoundSuccessEventArgs.Duration = duration;
             playSoundSuccessEventArgs.UserData = userData;
@@ -95,7 +97,7 @@ namespace EasyGameFramework.Core.Sound
         public override void Clear()
         {
             SerialId = 0;
-            SoundAssetName = null;
+            SoundAssetAddress = AssetAddress.Empty;
             SoundAgent = null;
             Duration = 0f;
             UserData = null;

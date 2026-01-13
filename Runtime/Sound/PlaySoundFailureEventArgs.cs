@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Resource;
 using EasyGameFramework.Core.Sound;
 
 namespace EasyGameFramework
@@ -22,7 +23,7 @@ namespace EasyGameFramework
         public PlaySoundFailureEventArgs()
         {
             SerialId = 0;
-            SoundAssetName = null;
+            SoundAssetAddress = AssetAddress.Empty;
             SoundGroupName = null;
             PlaySoundParams = null;
             BindingEntity = null;
@@ -41,9 +42,9 @@ namespace EasyGameFramework
         }
 
         /// <summary>
-        /// 获取声音资源名称。
+        /// 获取声音资源地址。
         /// </summary>
-        public string SoundAssetName
+        public AssetAddress SoundAssetAddress
         {
             get;
             private set;
@@ -113,7 +114,7 @@ namespace EasyGameFramework
             PlaySoundInfo playSoundInfo = (PlaySoundInfo)e.UserData;
             PlaySoundFailureEventArgs playSoundFailureEventArgs = ReferencePool.Acquire<PlaySoundFailureEventArgs>();
             playSoundFailureEventArgs.SerialId = e.SerialId;
-            playSoundFailureEventArgs.SoundAssetName = e.SoundAssetName;
+            playSoundFailureEventArgs.SoundAssetAddress = e.SoundAssetAddress;
             playSoundFailureEventArgs.SoundGroupName = e.SoundGroupName;
             playSoundFailureEventArgs.PlaySoundParams = e.PlaySoundParams;
             playSoundFailureEventArgs.BindingEntity = playSoundInfo.BindingEntity;
@@ -130,7 +131,7 @@ namespace EasyGameFramework
         public override void Clear()
         {
             SerialId = 0;
-            SoundAssetName = null;
+            SoundAssetAddress = AssetAddress.Empty;
             SoundGroupName = null;
             PlaySoundParams = null;
             BindingEntity = null;

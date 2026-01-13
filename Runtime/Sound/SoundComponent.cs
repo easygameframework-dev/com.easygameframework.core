@@ -313,9 +313,8 @@ namespace EasyGameFramework
         /// <summary>
         /// 播放声音。
         /// </summary>
-        /// <param name="soundAssetName">声音资源名称。</param>
+        /// <param name="soundAssetAddress">声音资源地址。</param>
         /// <param name="soundGroupName">声音组名称。</param>
-        /// <param name="customPackageName">自定义资源包名称。</param>
         /// <param name="customPriority">加载声音资源的优先级。</param>
         /// <param name="playSoundParams">播放声音参数。</param>
         /// <param name="bindingEntity">要绑定到的实体</param>
@@ -323,16 +322,15 @@ namespace EasyGameFramework
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>声音的序列编号。</returns>
         public int PlaySound(
-            string soundAssetName,
+            AssetAddress soundAssetAddress,
             string soundGroupName,
-            string customPackageName = "",
             PlaySoundParams playSoundParams = null,
             Entity bindingEntity = null,
             Vector3 worldPosition = new Vector3(),
             int? customPriority = null,
             object userData = null)
         {
-            return m_SoundManager.PlaySound(soundAssetName, soundGroupName, customPackageName, playSoundParams, customPriority, PlaySoundInfo.Create(bindingEntity, worldPosition, userData));
+            return m_SoundManager.PlaySound(soundAssetAddress, soundGroupName, playSoundParams, customPriority, PlaySoundInfo.Create(bindingEntity, worldPosition, userData));
         }
 
         /// <summary>
@@ -479,7 +477,7 @@ namespace EasyGameFramework
 
         private void OnPlaySoundFailure(object sender, EasyGameFramework.Core.Sound.PlaySoundFailureEventArgs e)
         {
-            string logMessage = Utility.Text.Format("Play sound failure, asset name '{0}', sound group name '{1}', error code '{2}', error message '{3}'.", e.SoundAssetName, e.SoundGroupName, e.ErrorCode, e.ErrorMessage);
+            string logMessage = Utility.Text.Format("Play sound failure, asset address '{0}', sound group name '{1}', error code '{2}', error message '{3}'.", e.SoundAssetAddress, e.SoundGroupName, e.ErrorCode, e.ErrorMessage);
             if (e.ErrorCode == PlaySoundErrorCode.IgnoredDueToLowPriority)
             {
                 Log.Info(logMessage);
