@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System.Collections.Generic;
+using EasyGameFramework.Core.Resource;
 
 namespace EasyGameFramework.Core.UI
 {
@@ -179,18 +180,18 @@ namespace EasyGameFramework.Core.UI
             /// <summary>
             /// 界面组中是否存在界面。
             /// </summary>
-            /// <param name="uiFormAssetName">界面资源名称。</param>
+            /// <param name="uiFormAssetAddress">界面资源地址。</param>
             /// <returns>界面组中是否存在界面。</returns>
-            public bool HasUIForm(string uiFormAssetName)
+            public bool HasUIForm(AssetAddress uiFormAssetAddress)
             {
-                if (string.IsNullOrEmpty(uiFormAssetName))
+                if (!uiFormAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("UI form asset name is invalid.");
+                    throw new GameFrameworkException("UI form asset address is invalid.");
                 }
 
                 foreach (UIFormInfo uiFormInfo in m_UIFormInfos)
                 {
-                    if (uiFormInfo.UIForm.UIFormAssetName == uiFormAssetName)
+                    if (uiFormInfo.UIForm.UIFormAssetAddress == uiFormAssetAddress)
                     {
                         return true;
                     }
@@ -220,18 +221,18 @@ namespace EasyGameFramework.Core.UI
             /// <summary>
             /// 从界面组中获取界面。
             /// </summary>
-            /// <param name="uiFormAssetName">界面资源名称。</param>
+            /// <param name="uiFormAssetAddress">界面资源地址。</param>
             /// <returns>要获取的界面。</returns>
-            public IUIForm GetUIForm(string uiFormAssetName)
+            public IUIForm GetUIForm(AssetAddress uiFormAssetAddress)
             {
-                if (string.IsNullOrEmpty(uiFormAssetName))
+                if (!uiFormAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("UI form asset name is invalid.");
+                    throw new GameFrameworkException("UI form asset address is invalid.");
                 }
 
                 foreach (UIFormInfo uiFormInfo in m_UIFormInfos)
                 {
-                    if (uiFormInfo.UIForm.UIFormAssetName == uiFormAssetName)
+                    if (uiFormInfo.UIForm.UIFormAssetAddress == uiFormAssetAddress)
                     {
                         return uiFormInfo.UIForm;
                     }
@@ -243,19 +244,19 @@ namespace EasyGameFramework.Core.UI
             /// <summary>
             /// 从界面组中获取界面。
             /// </summary>
-            /// <param name="uiFormAssetName">界面资源名称。</param>
+            /// <param name="uiFormAssetAddress">界面资源地址。</param>
             /// <returns>要获取的界面。</returns>
-            public IUIForm[] GetUIForms(string uiFormAssetName)
+            public IUIForm[] GetUIForms(AssetAddress uiFormAssetAddress)
             {
-                if (string.IsNullOrEmpty(uiFormAssetName))
+                if (!uiFormAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("UI form asset name is invalid.");
+                    throw new GameFrameworkException("UI form asset address is invalid.");
                 }
 
                 List<IUIForm> results = new List<IUIForm>();
                 foreach (UIFormInfo uiFormInfo in m_UIFormInfos)
                 {
-                    if (uiFormInfo.UIForm.UIFormAssetName == uiFormAssetName)
+                    if (uiFormInfo.UIForm.UIFormAssetAddress == uiFormAssetAddress)
                     {
                         results.Add(uiFormInfo.UIForm);
                     }
@@ -267,13 +268,13 @@ namespace EasyGameFramework.Core.UI
             /// <summary>
             /// 从界面组中获取界面。
             /// </summary>
-            /// <param name="uiFormAssetName">界面资源名称。</param>
+            /// <param name="uiFormAssetAddress">界面资源地址。</param>
             /// <param name="results">要获取的界面。</param>
-            public void GetUIForms(string uiFormAssetName, List<IUIForm> results)
+            public void GetUIForms(AssetAddress uiFormAssetAddress, List<IUIForm> results)
             {
-                if (string.IsNullOrEmpty(uiFormAssetName))
+                if (!uiFormAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("UI form asset name is invalid.");
+                    throw new GameFrameworkException("UI form asset address is invalid.");
                 }
 
                 if (results == null)
@@ -284,7 +285,7 @@ namespace EasyGameFramework.Core.UI
                 results.Clear();
                 foreach (UIFormInfo uiFormInfo in m_UIFormInfos)
                 {
-                    if (uiFormInfo.UIForm.UIFormAssetName == uiFormAssetName)
+                    if (uiFormInfo.UIForm.UIFormAssetAddress == uiFormAssetAddress)
                     {
                         results.Add(uiFormInfo.UIForm);
                     }
@@ -342,7 +343,7 @@ namespace EasyGameFramework.Core.UI
                 UIFormInfo uiFormInfo = GetUIFormInfo(uiForm);
                 if (uiFormInfo == null)
                 {
-                    throw new GameFrameworkException(Utility.Text.Format("Can not find UI form info for serial id '{0}', UI form asset name is '{1}'.", uiForm.SerialId, uiForm.UIFormAssetName));
+                    throw new GameFrameworkException(Utility.Text.Format("Can not find UI form info for serial id '{0}', UI form asset address is '{1}'.", uiForm.SerialId, uiForm.UIFormAssetAddress));
                 }
 
                 if (!uiFormInfo.Covered)
@@ -364,7 +365,7 @@ namespace EasyGameFramework.Core.UI
 
                 if (!m_UIFormInfos.Remove(uiFormInfo))
                 {
-                    throw new GameFrameworkException(Utility.Text.Format("UI group '{0}' not exists specified UI form '[{1}]{2}'.", m_Name, uiForm.SerialId, uiForm.UIFormAssetName));
+                    throw new GameFrameworkException(Utility.Text.Format("UI group '{0}' not exists specified UI form '[{1}]{2}'.", m_Name, uiForm.SerialId, uiForm.UIFormAssetAddress));
                 }
 
                 ReferencePool.Release(uiFormInfo);
@@ -476,11 +477,11 @@ namespace EasyGameFramework.Core.UI
                 }
             }
 
-            internal void InternalGetUIForms(string uiFormAssetName, List<IUIForm> results)
+            internal void InternalGetUIForms(AssetAddress uiFormAssetAddress, List<IUIForm> results)
             {
                 foreach (UIFormInfo uiFormInfo in m_UIFormInfos)
                 {
-                    if (uiFormInfo.UIForm.UIFormAssetName == uiFormAssetName)
+                    if (uiFormInfo.UIForm.UIFormAssetAddress == uiFormAssetAddress)
                     {
                         results.Add(uiFormInfo.UIForm);
                     }

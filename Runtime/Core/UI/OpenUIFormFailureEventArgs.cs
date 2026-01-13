@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.UI
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace EasyGameFramework.Core.UI
         public OpenUIFormFailureEventArgs()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroupName = null;
             PauseCoveredUIForm = false;
             ErrorMessage = null;
@@ -35,9 +37,9 @@ namespace EasyGameFramework.Core.UI
         }
 
         /// <summary>
-        /// 获取界面资源名称。
+        /// 获取界面资源地址。
         /// </summary>
-        public string UIFormAssetName
+        public AssetAddress UIFormAssetAddress
         {
             get;
             private set;
@@ -83,17 +85,17 @@ namespace EasyGameFramework.Core.UI
         /// 创建打开界面失败事件。
         /// </summary>
         /// <param name="serialId">界面序列编号。</param>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroupName">界面组名称。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="errorMessage">错误信息。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>创建的打开界面失败事件。</returns>
-        public static OpenUIFormFailureEventArgs Create(int serialId, string uiFormAssetName, string uiGroupName, bool pauseCoveredUIForm, string errorMessage, object userData)
+        public static OpenUIFormFailureEventArgs Create(int serialId, AssetAddress uiFormAssetAddress, string uiGroupName, bool pauseCoveredUIForm, string errorMessage, object userData)
         {
             OpenUIFormFailureEventArgs openUIFormFailureEventArgs = ReferencePool.Acquire<OpenUIFormFailureEventArgs>();
             openUIFormFailureEventArgs.SerialId = serialId;
-            openUIFormFailureEventArgs.UIFormAssetName = uiFormAssetName;
+            openUIFormFailureEventArgs.UIFormAssetAddress = uiFormAssetAddress;
             openUIFormFailureEventArgs.UIGroupName = uiGroupName;
             openUIFormFailureEventArgs.PauseCoveredUIForm = pauseCoveredUIForm;
             openUIFormFailureEventArgs.ErrorMessage = errorMessage;
@@ -107,7 +109,7 @@ namespace EasyGameFramework.Core.UI
         public override void Clear()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroupName = null;
             PauseCoveredUIForm = false;
             ErrorMessage = null;

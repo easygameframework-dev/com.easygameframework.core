@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.UI
 {
     /// <summary>
@@ -21,9 +23,9 @@ namespace EasyGameFramework.Core.UI
         }
 
         /// <summary>
-        /// 获取界面资源名称。
+        /// 获取界面资源地址。
         /// </summary>
-        string UIFormAssetName
+        AssetAddress UIFormAssetAddress
         {
             get;
         }
@@ -64,12 +66,12 @@ namespace EasyGameFramework.Core.UI
         /// 初始化界面。
         /// </summary>
         /// <param name="serialId">界面序列编号。</param>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroup">界面所属的界面组。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="isNewInstance">是否是新实例。</param>
         /// <param name="userData">用户自定义数据。</param>
-        void OnInit(int serialId, string uiFormAssetName, IUIGroup uiGroup, bool pauseCoveredUIForm, bool isNewInstance, object userData);
+        void OnInit(int serialId, AssetAddress uiFormAssetAddress, IUIGroup uiGroup, bool pauseCoveredUIForm, bool isNewInstance, object userData);
 
         /// <summary>
         /// 界面回收。

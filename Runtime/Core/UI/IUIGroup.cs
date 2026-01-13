@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System.Collections.Generic;
+using EasyGameFramework.Core.Resource;
 
 namespace EasyGameFramework.Core.UI
 {
@@ -74,9 +75,9 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 界面组中是否存在界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>界面组中是否存在界面。</returns>
-        bool HasUIForm(string uiFormAssetName);
+        bool HasUIForm(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 从界面组中获取界面。
@@ -88,23 +89,23 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 从界面组中获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        IUIForm GetUIForm(string uiFormAssetName);
+        IUIForm GetUIForm(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 从界面组中获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        IUIForm[] GetUIForms(string uiFormAssetName);
+        IUIForm[] GetUIForms(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 从界面组中获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="results">要获取的界面。</param>
-        void GetUIForms(string uiFormAssetName, List<IUIForm> results);
+        void GetUIForms(AssetAddress uiFormAssetAddress, List<IUIForm> results);
 
         /// <summary>
         /// 从界面组中获取所有界面。

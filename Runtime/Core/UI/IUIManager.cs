@@ -147,9 +147,9 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 是否存在界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否存在界面。</returns>
-        bool HasUIForm(string uiFormAssetName);
+        bool HasUIForm(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 获取界面。
@@ -161,23 +161,23 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        IUIForm GetUIForm(string uiFormAssetName);
+        IUIForm GetUIForm(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        IUIForm[] GetUIForms(string uiFormAssetName);
+        IUIForm[] GetUIForms(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="results">要获取的界面。</param>
-        void GetUIForms(string uiFormAssetName, List<IUIForm> results);
+        void GetUIForms(AssetAddress uiFormAssetAddress, List<IUIForm> results);
 
         /// <summary>
         /// 获取所有已加载的界面。
@@ -213,9 +213,9 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 是否正在加载界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否正在加载界面。</returns>
-        bool IsLoadingUIForm(string uiFormAssetName);
+        bool IsLoadingUIForm(AssetAddress uiFormAssetAddress);
 
         /// <summary>
         /// 是否是合法的界面。
@@ -227,14 +227,13 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 打开界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroupName">界面组名称。</param>
-        /// <param name="packageName">资源包名称。</param>
         /// <param name="customPriority">加载界面资源的优先级。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>界面的序列编号。</returns>
-        int OpenUIForm(string uiFormAssetName, string uiGroupName, string packageName = "", int? customPriority = null, bool pauseCoveredUIForm = false, object userData = null);
+        int OpenUIForm(AssetAddress uiFormAssetAddress, string uiGroupName, int? customPriority = null, bool pauseCoveredUIForm = false, object userData = null);
 
         /// <summary>
         /// 关闭界面。

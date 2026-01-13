@@ -18,7 +18,7 @@ namespace EasyGameFramework.Core.UI
     internal sealed partial class UIManager : GameFrameworkModule, IUIManager
     {
         private readonly Dictionary<string, UIGroup> m_UIGroups;
-        private readonly Dictionary<int, string> m_UIFormsBeingLoaded;
+        private readonly Dictionary<int, AssetAddress> m_UIFormsBeingLoaded;
         private readonly HashSet<int> m_UIFormsToReleaseOnLoad;
         private readonly Queue<IUIForm> m_RecycleQueue;
         private readonly LoadAssetCallbacks m_LoadAssetCallbacks;
@@ -38,7 +38,7 @@ namespace EasyGameFramework.Core.UI
         public UIManager()
         {
             m_UIGroups = new Dictionary<string, UIGroup>(StringComparer.Ordinal);
-            m_UIFormsBeingLoaded = new Dictionary<int, string>();
+            m_UIFormsBeingLoaded = new Dictionary<int, AssetAddress>();
             m_UIFormsToReleaseOnLoad = new HashSet<int>();
             m_RecycleQueue = new Queue<IUIForm>();
             m_LoadAssetCallbacks = new LoadAssetCallbacks(LoadAssetSuccessCallback, LoadAssetFailureCallback);
@@ -376,18 +376,18 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 是否存在界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否存在界面。</returns>
-        public bool HasUIForm(string uiFormAssetName)
+        public bool HasUIForm(AssetAddress uiFormAssetAddress)
         {
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
             foreach (KeyValuePair<string, UIGroup> uiGroup in m_UIGroups)
             {
-                if (uiGroup.Value.HasUIForm(uiFormAssetName))
+                if (uiGroup.Value.HasUIForm(uiFormAssetAddress))
                 {
                     return true;
                 }
@@ -418,18 +418,18 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        public IUIForm GetUIForm(string uiFormAssetName)
+        public IUIForm GetUIForm(AssetAddress uiFormAssetAddress)
         {
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
             foreach (KeyValuePair<string, UIGroup> uiGroup in m_UIGroups)
             {
-                IUIForm uiForm = uiGroup.Value.GetUIForm(uiFormAssetName);
+                IUIForm uiForm = uiGroup.Value.GetUIForm(uiFormAssetAddress);
                 if (uiForm != null)
                 {
                     return uiForm;
@@ -442,19 +442,19 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        public IUIForm[] GetUIForms(string uiFormAssetName)
+        public IUIForm[] GetUIForms(AssetAddress uiFormAssetAddress)
         {
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
             List<IUIForm> results = new List<IUIForm>();
             foreach (KeyValuePair<string, UIGroup> uiGroup in m_UIGroups)
             {
-                results.AddRange(uiGroup.Value.GetUIForms(uiFormAssetName));
+                results.AddRange(uiGroup.Value.GetUIForms(uiFormAssetAddress));
             }
 
             return results.ToArray();
@@ -463,13 +463,13 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="results">要获取的界面。</param>
-        public void GetUIForms(string uiFormAssetName, List<IUIForm> results)
+        public void GetUIForms(AssetAddress uiFormAssetAddress, List<IUIForm> results)
         {
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
             if (results == null)
@@ -480,7 +480,7 @@ namespace EasyGameFramework.Core.UI
             results.Clear();
             foreach (KeyValuePair<string, UIGroup> uiGroup in m_UIGroups)
             {
-                uiGroup.Value.InternalGetUIForms(uiFormAssetName, results);
+                uiGroup.Value.InternalGetUIForms(uiFormAssetAddress, results);
             }
         }
 
@@ -525,7 +525,7 @@ namespace EasyGameFramework.Core.UI
         {
             int index = 0;
             int[] results = new int[m_UIFormsBeingLoaded.Count];
-            foreach (KeyValuePair<int, string> uiFormBeingLoaded in m_UIFormsBeingLoaded)
+            foreach (KeyValuePair<int, AssetAddress> uiFormBeingLoaded in m_UIFormsBeingLoaded)
             {
                 results[index++] = uiFormBeingLoaded.Key;
             }
@@ -545,7 +545,7 @@ namespace EasyGameFramework.Core.UI
             }
 
             results.Clear();
-            foreach (KeyValuePair<int, string> uiFormBeingLoaded in m_UIFormsBeingLoaded)
+            foreach (KeyValuePair<int, AssetAddress> uiFormBeingLoaded in m_UIFormsBeingLoaded)
             {
                 results.Add(uiFormBeingLoaded.Key);
             }
@@ -564,16 +564,16 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 是否正在加载界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否正在加载界面。</returns>
-        public bool IsLoadingUIForm(string uiFormAssetName)
+        public bool IsLoadingUIForm(AssetAddress uiFormAssetAddress)
         {
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
-            return m_UIFormsBeingLoaded.ContainsValue(uiFormAssetName);
+            return m_UIFormsBeingLoaded.ContainsValue(uiFormAssetAddress);
         }
 
         /// <summary>
@@ -594,14 +594,13 @@ namespace EasyGameFramework.Core.UI
         /// <summary>
         /// 打开界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroupName">界面组名称。</param>
-        /// <param name="packageName">资源包名称。</param>
         /// <param name="customPriority">加载界面资源的优先级。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>界面的序列编号。</returns>
-        public int OpenUIForm(string uiFormAssetName, string uiGroupName, string packageName, int? customPriority, bool pauseCoveredUIForm, object userData)
+        public int OpenUIForm(AssetAddress uiFormAssetAddress, string uiGroupName, int? customPriority, bool pauseCoveredUIForm, object userData)
         {
             if (m_ResourceManager == null)
             {
@@ -613,9 +612,9 @@ namespace EasyGameFramework.Core.UI
                 throw new GameFrameworkException("You must set UI form helper first.");
             }
 
-            if (string.IsNullOrEmpty(uiFormAssetName))
+            if (!uiFormAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("UI form asset name is invalid.");
+                throw new GameFrameworkException("UI form asset address is invalid.");
             }
 
             if (string.IsNullOrEmpty(uiGroupName))
@@ -630,19 +629,15 @@ namespace EasyGameFramework.Core.UI
             }
 
             int serialId = ++m_Serial;
-            UIFormInstanceObject uiFormInstanceObject = m_InstancePool.Spawn(uiFormAssetName);
+            UIFormInstanceObject uiFormInstanceObject = m_InstancePool.Spawn(uiFormAssetAddress.Location);
             if (uiFormInstanceObject == null)
             {
-                m_UIFormsBeingLoaded.Add(serialId, uiFormAssetName);
-
-                // Use AssetAddress for resource loading
-                string actualPackageName = string.IsNullOrEmpty(packageName) ? "DefaultPackage" : packageName;
-                var assetAddress = new AssetAddress(actualPackageName, uiFormAssetName);
-                m_ResourceManager.LoadAsset(assetAddress, m_LoadAssetCallbacks, null, customPriority, OpenUIFormInfo.Create(serialId, uiGroup, pauseCoveredUIForm, userData));
+                m_UIFormsBeingLoaded.Add(serialId, uiFormAssetAddress);
+                m_ResourceManager.LoadAsset(uiFormAssetAddress, m_LoadAssetCallbacks, null, customPriority, OpenUIFormInfo.Create(serialId, uiGroup, pauseCoveredUIForm, userData));
             }
             else
             {
-                InternalOpenUIForm(serialId, uiFormAssetName, uiGroup, uiFormInstanceObject.Target, pauseCoveredUIForm, false, 0f, userData);
+                InternalOpenUIForm(serialId, uiFormAssetAddress, uiGroup, uiFormInstanceObject.Target, pauseCoveredUIForm, false, 0f, userData);
             }
 
             return serialId;
@@ -695,7 +690,7 @@ namespace EasyGameFramework.Core.UI
 
             if (m_CloseUIFormCompleteEventHandler != null)
             {
-                CloseUIFormCompleteEventArgs closeUIFormCompleteEventArgs = CloseUIFormCompleteEventArgs.Create(uiForm.SerialId, uiForm.UIFormAssetName, uiGroup, userData);
+                CloseUIFormCompleteEventArgs closeUIFormCompleteEventArgs = CloseUIFormCompleteEventArgs.Create(uiForm.SerialId, uiForm.UIFormAssetAddress, uiGroup, userData);
                 m_CloseUIFormCompleteEventHandler(this, closeUIFormCompleteEventArgs);
                 ReferencePool.Release(closeUIFormCompleteEventArgs);
             }
@@ -734,7 +729,7 @@ namespace EasyGameFramework.Core.UI
         /// </summary>
         public void CloseAllLoadingUIForms()
         {
-            foreach (KeyValuePair<int, string> uiFormBeingLoaded in m_UIFormsBeingLoaded)
+            foreach (KeyValuePair<int, AssetAddress> uiFormBeingLoaded in m_UIFormsBeingLoaded)
             {
                 m_UIFormsToReleaseOnLoad.Add(uiFormBeingLoaded.Key);
             }
@@ -804,7 +799,7 @@ namespace EasyGameFramework.Core.UI
             m_InstancePool.SetPriority(uiFormInstance, priority);
         }
 
-        private void InternalOpenUIForm(int serialId, string uiFormAssetName, UIGroup uiGroup, object uiFormInstance, bool pauseCoveredUIForm, bool isNewInstance, float duration, object userData)
+        private void InternalOpenUIForm(int serialId, AssetAddress uiFormAssetAddress, UIGroup uiGroup, object uiFormInstance, bool pauseCoveredUIForm, bool isNewInstance, float duration, object userData)
         {
             try
             {
@@ -814,7 +809,7 @@ namespace EasyGameFramework.Core.UI
                     throw new GameFrameworkException("Can not create UI form in UI form helper.");
                 }
 
-                uiForm.OnInit(serialId, uiFormAssetName, uiGroup, pauseCoveredUIForm, isNewInstance, userData);
+                uiForm.OnInit(serialId, uiFormAssetAddress, uiGroup, pauseCoveredUIForm, isNewInstance, userData);
                 uiGroup.AddUIForm(uiForm);
                 uiForm.OnOpen(userData);
                 uiGroup.Refresh();
@@ -830,7 +825,7 @@ namespace EasyGameFramework.Core.UI
             {
                 if (m_OpenUIFormFailureEventHandler != null)
                 {
-                    OpenUIFormFailureEventArgs openUIFormFailureEventArgs = OpenUIFormFailureEventArgs.Create(serialId, uiFormAssetName, uiGroup.Name, pauseCoveredUIForm, exception.ToString(), userData);
+                    OpenUIFormFailureEventArgs openUIFormFailureEventArgs = OpenUIFormFailureEventArgs.Create(serialId, uiFormAssetAddress, uiGroup.Name, pauseCoveredUIForm, exception.ToString(), userData);
                     m_OpenUIFormFailureEventHandler(this, openUIFormFailureEventArgs);
                     ReferencePool.Release(openUIFormFailureEventArgs);
                     return;
@@ -840,7 +835,7 @@ namespace EasyGameFramework.Core.UI
             }
         }
 
-        private void LoadAssetSuccessCallback(string packageName, string uiFormAssetName, object uiFormAsset, float duration, object userData)
+        private void LoadAssetSuccessCallback(string packageName, string location, object uiFormAsset, float duration, object userData)
         {
             OpenUIFormInfo openUIFormInfo = (OpenUIFormInfo)userData;
             if (openUIFormInfo == null)
@@ -857,14 +852,15 @@ namespace EasyGameFramework.Core.UI
             }
 
             m_UIFormsBeingLoaded.Remove(openUIFormInfo.SerialId);
-            UIFormInstanceObject uiFormInstanceObject = UIFormInstanceObject.Create(uiFormAssetName, uiFormAsset, m_UIFormHelper.InstantiateUIForm(uiFormAsset), m_UIFormHelper);
+            var uiFormAssetAddress = new AssetAddress(packageName, location);
+            UIFormInstanceObject uiFormInstanceObject = UIFormInstanceObject.Create(location, uiFormAsset, m_UIFormHelper.InstantiateUIForm(uiFormAsset), m_UIFormHelper);
             m_InstancePool.Register(uiFormInstanceObject, true);
 
-            InternalOpenUIForm(openUIFormInfo.SerialId, uiFormAssetName, openUIFormInfo.UIGroup, uiFormInstanceObject.Target, openUIFormInfo.PauseCoveredUIForm, true, duration, openUIFormInfo.UserData);
+            InternalOpenUIForm(openUIFormInfo.SerialId, uiFormAssetAddress, openUIFormInfo.UIGroup, uiFormInstanceObject.Target, openUIFormInfo.PauseCoveredUIForm, true, duration, openUIFormInfo.UserData);
             ReferencePool.Release(openUIFormInfo);
         }
 
-        private void LoadAssetFailureCallback(string packageName, string uiFormAssetName, LoadResourceStatus status, string errorMessage, object userData)
+        private void LoadAssetFailureCallback(string packageName, string location, LoadResourceStatus status, string errorMessage, object userData)
         {
             OpenUIFormInfo openUIFormInfo = (OpenUIFormInfo)userData;
             if (openUIFormInfo == null)
@@ -879,10 +875,11 @@ namespace EasyGameFramework.Core.UI
             }
 
             m_UIFormsBeingLoaded.Remove(openUIFormInfo.SerialId);
-            string appendErrorMessage = Utility.Text.Format("Load UI form failure, asset name '{0}', status '{1}', error message '{2}'.", uiFormAssetName, status, errorMessage);
+            var uiFormAssetAddress = new AssetAddress(packageName, location);
+            string appendErrorMessage = Utility.Text.Format("Load UI form failure, asset name '{0}', status '{1}', error message '{2}'.", uiFormAssetAddress, status, errorMessage);
             if (m_OpenUIFormFailureEventHandler != null)
             {
-                OpenUIFormFailureEventArgs openUIFormFailureEventArgs = OpenUIFormFailureEventArgs.Create(openUIFormInfo.SerialId, uiFormAssetName, openUIFormInfo.UIGroup.Name, openUIFormInfo.PauseCoveredUIForm, appendErrorMessage, openUIFormInfo.UserData);
+                OpenUIFormFailureEventArgs openUIFormFailureEventArgs = OpenUIFormFailureEventArgs.Create(openUIFormInfo.SerialId, uiFormAssetAddress, openUIFormInfo.UIGroup.Name, openUIFormInfo.PauseCoveredUIForm, appendErrorMessage, openUIFormInfo.UserData);
                 m_OpenUIFormFailureEventHandler(this, openUIFormFailureEventArgs);
                 ReferencePool.Release(openUIFormFailureEventArgs);
                 return;

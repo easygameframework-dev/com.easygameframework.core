@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Resource;
 using EasyGameFramework.Core.UI;
 
 namespace EasyGameFramework
@@ -22,7 +23,7 @@ namespace EasyGameFramework
         public CloseUIFormCompleteEventArgs()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroup = null;
             UserData = null;
         }
@@ -37,9 +38,9 @@ namespace EasyGameFramework
         }
 
         /// <summary>
-        /// 获取界面资源名称。
+        /// 获取界面资源地址。
         /// </summary>
-        public string UIFormAssetName
+        public AssetAddress UIFormAssetAddress
         {
             get;
             private set;
@@ -72,7 +73,7 @@ namespace EasyGameFramework
         {
             CloseUIFormCompleteEventArgs closeUIFormCompleteEventArgs = ReferencePool.Acquire<CloseUIFormCompleteEventArgs>();
             closeUIFormCompleteEventArgs.SerialId = e.SerialId;
-            closeUIFormCompleteEventArgs.UIFormAssetName = e.UIFormAssetName;
+            closeUIFormCompleteEventArgs.UIFormAssetAddress = e.UIFormAssetAddress;
             closeUIFormCompleteEventArgs.UIGroup = e.UIGroup;
             closeUIFormCompleteEventArgs.UserData = e.UserData;
             return closeUIFormCompleteEventArgs;
@@ -84,7 +85,7 @@ namespace EasyGameFramework
         public override void Clear()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroup = null;
             UserData = null;
         }

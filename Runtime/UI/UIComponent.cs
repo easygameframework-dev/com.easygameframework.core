@@ -316,11 +316,11 @@ namespace EasyGameFramework
         /// <summary>
         /// 是否存在界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否存在界面。</returns>
-        public bool HasUIForm(string uiFormAssetName)
+        public bool HasUIForm(AssetAddress uiFormAssetAddress)
         {
-            return m_UIManager.HasUIForm(uiFormAssetName);
+            return m_UIManager.HasUIForm(uiFormAssetAddress);
         }
 
         /// <summary>
@@ -336,21 +336,21 @@ namespace EasyGameFramework
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        public UIForm GetUIForm(string uiFormAssetName)
+        public UIForm GetUIForm(AssetAddress uiFormAssetAddress)
         {
-            return (UIForm)m_UIManager.GetUIForm(uiFormAssetName);
+            return (UIForm)m_UIManager.GetUIForm(uiFormAssetAddress);
         }
 
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>要获取的界面。</returns>
-        public UIForm[] GetUIForms(string uiFormAssetName)
+        public UIForm[] GetUIForms(AssetAddress uiFormAssetAddress)
         {
-            IUIForm[] uiForms = m_UIManager.GetUIForms(uiFormAssetName);
+            IUIForm[] uiForms = m_UIManager.GetUIForms(uiFormAssetAddress);
             UIForm[] uiFormImpls = new UIForm[uiForms.Length];
             for (int i = 0; i < uiForms.Length; i++)
             {
@@ -363,9 +363,9 @@ namespace EasyGameFramework
         /// <summary>
         /// 获取界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="results">要获取的界面。</param>
-        public void GetUIForms(string uiFormAssetName, List<UIForm> results)
+        public void GetUIForms(AssetAddress uiFormAssetAddress, List<UIForm> results)
         {
             if (results == null)
             {
@@ -374,7 +374,7 @@ namespace EasyGameFramework
             }
 
             results.Clear();
-            m_UIManager.GetUIForms(uiFormAssetName, m_InternalUIFormResults);
+            m_UIManager.GetUIForms(uiFormAssetAddress, m_InternalUIFormResults);
             foreach (IUIForm uiForm in m_InternalUIFormResults)
             {
                 results.Add((UIForm)uiForm);
@@ -448,11 +448,11 @@ namespace EasyGameFramework
         /// <summary>
         /// 是否正在加载界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <returns>是否正在加载界面。</returns>
-        public bool IsLoadingUIForm(string uiFormAssetName)
+        public bool IsLoadingUIForm(AssetAddress uiFormAssetAddress)
         {
-            return m_UIManager.IsLoadingUIForm(uiFormAssetName);
+            return m_UIManager.IsLoadingUIForm(uiFormAssetAddress);
         }
 
         /// <summary>
@@ -468,22 +468,20 @@ namespace EasyGameFramework
         /// <summary>
         /// 打开界面。
         /// </summary>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroupName">界面组名称。</param>
-        /// <param name="customPackageName">自定义资源包名称。</param>
         /// <param name="customPriority">加载界面资源的优先级。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>界面的序列编号。</returns>
         public int OpenUIForm(
-            string uiFormAssetName,
+            AssetAddress uiFormAssetAddress,
             string uiGroupName,
-            string customPackageName = "",
             int? customPriority = null,
             bool pauseCoveredUIForm = false,
             object userData = null)
         {
-            return m_UIManager.OpenUIForm(uiFormAssetName, uiGroupName, customPackageName, customPriority, pauseCoveredUIForm, userData);
+            return m_UIManager.OpenUIForm(uiFormAssetAddress, uiGroupName, customPriority, pauseCoveredUIForm, userData);
         }
 
         /// <summary>
@@ -589,7 +587,7 @@ namespace EasyGameFramework
 
         private void OnOpenUIFormFailure(object sender, EasyGameFramework.Core.UI.OpenUIFormFailureEventArgs e)
         {
-            Log.Warning("Open UI form failure, asset name '{0}', UI group name '{1}', pause covered UI form '{2}', error message '{3}'.", e.UIFormAssetName, e.UIGroupName, e.PauseCoveredUIForm, e.ErrorMessage);
+            Log.Warning("Open UI form failure, asset name '{0}', UI group name '{1}', pause covered UI form '{2}', error message '{3}'.", e.UIFormAssetAddress, e.UIGroupName, e.PauseCoveredUIForm, e.ErrorMessage);
             if (m_EnableOpenUIFormFailureEvent)
             {
                 m_EventComponent.Fire(this, OpenUIFormFailureEventArgs.Create(e));

@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.UI
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace EasyGameFramework.Core.UI
         public CloseUIFormCompleteEventArgs()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroup = null;
             UserData = null;
         }
@@ -33,9 +35,9 @@ namespace EasyGameFramework.Core.UI
         }
 
         /// <summary>
-        /// 获取界面资源名称。
+        /// 获取界面资源地址。
         /// </summary>
-        public string UIFormAssetName
+        public AssetAddress UIFormAssetAddress
         {
             get;
             private set;
@@ -63,15 +65,15 @@ namespace EasyGameFramework.Core.UI
         /// 创建关闭界面完成事件。
         /// </summary>
         /// <param name="serialId">界面序列编号。</param>
-        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiFormAssetAddress">界面资源地址。</param>
         /// <param name="uiGroup">界面所属的界面组。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>创建的关闭界面完成事件。</returns>
-        public static CloseUIFormCompleteEventArgs Create(int serialId, string uiFormAssetName, IUIGroup uiGroup, object userData)
+        public static CloseUIFormCompleteEventArgs Create(int serialId, AssetAddress uiFormAssetAddress, IUIGroup uiGroup, object userData)
         {
             CloseUIFormCompleteEventArgs closeUIFormCompleteEventArgs = ReferencePool.Acquire<CloseUIFormCompleteEventArgs>();
             closeUIFormCompleteEventArgs.SerialId = serialId;
-            closeUIFormCompleteEventArgs.UIFormAssetName = uiFormAssetName;
+            closeUIFormCompleteEventArgs.UIFormAssetAddress = uiFormAssetAddress;
             closeUIFormCompleteEventArgs.UIGroup = uiGroup;
             closeUIFormCompleteEventArgs.UserData = userData;
             return closeUIFormCompleteEventArgs;
@@ -83,7 +85,7 @@ namespace EasyGameFramework.Core.UI
         public override void Clear()
         {
             SerialId = 0;
-            UIFormAssetName = null;
+            UIFormAssetAddress = AssetAddress.Empty;
             UIGroup = null;
             UserData = null;
         }
