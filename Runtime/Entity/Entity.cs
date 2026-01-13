@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Entity;
+using EasyGameFramework.Core.Resource;
 using System;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace EasyGameFramework
     public sealed class Entity : MonoBehaviour, IEntity
     {
         private int m_Id;
-        private string m_EntityAssetName;
+        private AssetAddress m_EntityAssetAddress;
         private IEntityGroup m_EntityGroup;
         private EntityLogic m_EntityLogic;
 
@@ -34,13 +35,13 @@ namespace EasyGameFramework
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        public string EntityAssetName
+        public AssetAddress EntityAssetAddress
         {
             get
             {
-                return m_EntityAssetName;
+                return m_EntityAssetAddress;
             }
         }
 
@@ -81,14 +82,14 @@ namespace EasyGameFramework
         /// 实体初始化。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroup">实体所属的实体组。</param>
         /// <param name="isNewInstance">是否是新实例。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void OnInit(int entityId, string entityAssetName, IEntityGroup entityGroup, bool isNewInstance, object userData)
+        public void OnInit(int entityId, AssetAddress entityAssetAddress, IEntityGroup entityGroup, bool isNewInstance, object userData)
         {
             m_Id = entityId;
-            m_EntityAssetName = entityAssetName;
+            m_EntityAssetAddress = entityAssetAddress;
             if (isNewInstance)
             {
                 m_EntityGroup = entityGroup;
@@ -122,7 +123,7 @@ namespace EasyGameFramework
             m_EntityLogic = gameObject.GetOrAddComponent(entityLogicType) as EntityLogic;
             if (m_EntityLogic == null)
             {
-                Log.Error("Entity '{0}' can not add entity logic.", entityAssetName);
+                Log.Error("Entity '{0}' can not add entity logic.", entityAssetAddress);
                 return;
             }
 
@@ -132,7 +133,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnInit with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnInit with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -148,7 +149,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnRecycle with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnRecycle with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
 
             m_Id = 0;
@@ -167,7 +168,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnShow with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnShow with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -184,7 +185,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnHide with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnHide with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -202,7 +203,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnAttached with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnAttached with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -219,7 +220,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnDetached with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnDetached with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -237,7 +238,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnAttachTo with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnAttachTo with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
 
             ReferencePool.Release(attachEntityInfo);
@@ -256,7 +257,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnDetachFrom with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnDetachFrom with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
 
@@ -273,7 +274,7 @@ namespace EasyGameFramework
             }
             catch (Exception exception)
             {
-                Log.Error("Entity '[{0}]{1}' OnUpdate with exception '{2}'.", m_Id, m_EntityAssetName, exception);
+                Log.Error("Entity '[{0}]{1}' OnUpdate with exception '{2}'.", m_Id, m_EntityAssetAddress, exception);
             }
         }
     }

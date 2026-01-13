@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Resource;
 using System;
 
 namespace EasyGameFramework
@@ -23,7 +24,7 @@ namespace EasyGameFramework
         {
             EntityId = 0;
             EntityLogicType = null;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroupName = null;
             ErrorMessage = null;
             UserData = null;
@@ -48,9 +49,9 @@ namespace EasyGameFramework
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        public string EntityAssetName
+        public AssetAddress EntityAssetAddress
         {
             get;
             private set;
@@ -94,7 +95,7 @@ namespace EasyGameFramework
             ShowEntityFailureEventArgs showEntityFailureEventArgs = ReferencePool.Acquire<ShowEntityFailureEventArgs>();
             showEntityFailureEventArgs.EntityId = e.EntityId;
             showEntityFailureEventArgs.EntityLogicType = showEntityInfo.EntityLogicType;
-            showEntityFailureEventArgs.EntityAssetName = e.EntityAssetName;
+            showEntityFailureEventArgs.EntityAssetAddress = e.EntityAssetAddress;
             showEntityFailureEventArgs.EntityGroupName = e.EntityGroupName;
             showEntityFailureEventArgs.ErrorMessage = e.ErrorMessage;
             showEntityFailureEventArgs.UserData = showEntityInfo.UserData;
@@ -109,7 +110,7 @@ namespace EasyGameFramework
         {
             EntityId = 0;
             EntityLogicType = null;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroupName = null;
             ErrorMessage = null;
             UserData = null;

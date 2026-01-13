@@ -8,6 +8,7 @@
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Entity;
 using EasyGameFramework.Core.Event;
+using EasyGameFramework.Core.Resource;
 
 namespace EasyGameFramework
 {
@@ -22,7 +23,7 @@ namespace EasyGameFramework
         public HideEntityCompleteEventArgs()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroup = null;
             UserData = null;
         }
@@ -37,9 +38,9 @@ namespace EasyGameFramework
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        public string EntityAssetName
+        public AssetAddress EntityAssetAddress
         {
             get;
             private set;
@@ -72,7 +73,7 @@ namespace EasyGameFramework
         {
             HideEntityCompleteEventArgs hideEntityCompleteEventArgs = ReferencePool.Acquire<HideEntityCompleteEventArgs>();
             hideEntityCompleteEventArgs.EntityId = e.EntityId;
-            hideEntityCompleteEventArgs.EntityAssetName = e.EntityAssetName;
+            hideEntityCompleteEventArgs.EntityAssetAddress = e.EntityAssetAddress;
             hideEntityCompleteEventArgs.EntityGroup = e.EntityGroup;
             hideEntityCompleteEventArgs.UserData = e.UserData;
             return hideEntityCompleteEventArgs;
@@ -84,7 +85,7 @@ namespace EasyGameFramework
         public override void Clear()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroup = null;
             UserData = null;
         }

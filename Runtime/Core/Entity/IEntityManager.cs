@@ -114,9 +114,9 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 是否存在实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>是否存在实体。</returns>
-        bool HasEntity(string entityAssetName);
+        bool HasEntity(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 获取实体。
@@ -128,23 +128,23 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        IEntity GetEntity(string entityAssetName);
+        IEntity GetEntity(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        IEntity[] GetEntities(string entityAssetName);
+        IEntity[] GetEntities(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="results">要获取的实体。</param>
-        void GetEntities(string entityAssetName, List<IEntity> results);
+        void GetEntities(AssetAddress entityAssetAddress, List<IEntity> results);
 
         /// <summary>
         /// 获取所有已加载的实体。
@@ -188,12 +188,11 @@ namespace EasyGameFramework.Core.Entity
         /// 显示实体。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroupName">实体组名称。</param>
-        /// <param name="packageName">资源包名称。</param>
         /// <param name="customPriority">加载实体资源的优先级。</param>
         /// <param name="userData">用户自定义数据。</param>
-        void ShowEntity(int entityId, string entityAssetName, string entityGroupName, string packageName = "", int? customPriority = null, object userData = null);
+        void ShowEntity(int entityId, AssetAddress entityAssetAddress, string entityGroupName, int? customPriority = null, object userData = null);
 
         /// <summary>
         /// 隐藏实体。

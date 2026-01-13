@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.Entity
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace EasyGameFramework.Core.Entity
         public ShowEntityFailureEventArgs()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroupName = null;
             ErrorMessage = null;
             UserData = null;
@@ -34,9 +36,9 @@ namespace EasyGameFramework.Core.Entity
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        public string EntityAssetName
+        public AssetAddress EntityAssetAddress
         {
             get;
             private set;
@@ -73,16 +75,16 @@ namespace EasyGameFramework.Core.Entity
         /// 创建显示实体失败事件。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroupName">实体组名称。</param>
         /// <param name="errorMessage">错误信息。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>创建的显示实体失败事件。</returns>
-        public static ShowEntityFailureEventArgs Create(int entityId, string entityAssetName, string entityGroupName, string errorMessage, object userData)
+        public static ShowEntityFailureEventArgs Create(int entityId, AssetAddress entityAssetAddress, string entityGroupName, string errorMessage, object userData)
         {
             ShowEntityFailureEventArgs showEntityFailureEventArgs = ReferencePool.Acquire<ShowEntityFailureEventArgs>();
             showEntityFailureEventArgs.EntityId = entityId;
-            showEntityFailureEventArgs.EntityAssetName = entityAssetName;
+            showEntityFailureEventArgs.EntityAssetAddress = entityAssetAddress;
             showEntityFailureEventArgs.EntityGroupName = entityGroupName;
             showEntityFailureEventArgs.ErrorMessage = errorMessage;
             showEntityFailureEventArgs.UserData = userData;
@@ -95,7 +97,7 @@ namespace EasyGameFramework.Core.Entity
         public override void Clear()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroupName = null;
             ErrorMessage = null;
             UserData = null;

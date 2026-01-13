@@ -7,6 +7,7 @@
 
 using System.Collections.Generic;
 using EasyGameFramework.Core.ObjectPool;
+using EasyGameFramework.Core.Resource;
 
 namespace EasyGameFramework.Core.Entity
 {
@@ -184,18 +185,18 @@ namespace EasyGameFramework.Core.Entity
             /// <summary>
             /// 实体组中是否存在实体。
             /// </summary>
-            /// <param name="entityAssetName">实体资源名称。</param>
+            /// <param name="entityAssetAddress">实体资源地址。</param>
             /// <returns>实体组中是否存在实体。</returns>
-            public bool HasEntity(string entityAssetName)
+            public bool HasEntity(AssetAddress entityAssetAddress)
             {
-                if (string.IsNullOrEmpty(entityAssetName))
+                if (!entityAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("Entity asset name is invalid.");
+                    throw new GameFrameworkException("Entity asset address is invalid.");
                 }
 
                 foreach (IEntity entity in m_Entities)
                 {
-                    if (entity.EntityAssetName == entityAssetName)
+                    if (entity.EntityAssetAddress == entityAssetAddress)
                     {
                         return true;
                     }
@@ -225,18 +226,18 @@ namespace EasyGameFramework.Core.Entity
             /// <summary>
             /// 从实体组中获取实体。
             /// </summary>
-            /// <param name="entityAssetName">实体资源名称。</param>
+            /// <param name="entityAssetAddress">实体资源地址。</param>
             /// <returns>要获取的实体。</returns>
-            public IEntity GetEntity(string entityAssetName)
+            public IEntity GetEntity(AssetAddress entityAssetAddress)
             {
-                if (string.IsNullOrEmpty(entityAssetName))
+                if (!entityAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("Entity asset name is invalid.");
+                    throw new GameFrameworkException("Entity asset address is invalid.");
                 }
 
                 foreach (IEntity entity in m_Entities)
                 {
-                    if (entity.EntityAssetName == entityAssetName)
+                    if (entity.EntityAssetAddress == entityAssetAddress)
                     {
                         return entity;
                     }
@@ -248,19 +249,19 @@ namespace EasyGameFramework.Core.Entity
             /// <summary>
             /// 从实体组中获取实体。
             /// </summary>
-            /// <param name="entityAssetName">实体资源名称。</param>
+            /// <param name="entityAssetAddress">实体资源地址。</param>
             /// <returns>要获取的实体。</returns>
-            public IEntity[] GetEntities(string entityAssetName)
+            public IEntity[] GetEntities(AssetAddress entityAssetAddress)
             {
-                if (string.IsNullOrEmpty(entityAssetName))
+                if (!entityAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("Entity asset name is invalid.");
+                    throw new GameFrameworkException("Entity asset address is invalid.");
                 }
 
                 List<IEntity> results = new List<IEntity>();
                 foreach (IEntity entity in m_Entities)
                 {
-                    if (entity.EntityAssetName == entityAssetName)
+                    if (entity.EntityAssetAddress == entityAssetAddress)
                     {
                         results.Add(entity);
                     }
@@ -272,13 +273,13 @@ namespace EasyGameFramework.Core.Entity
             /// <summary>
             /// 从实体组中获取实体。
             /// </summary>
-            /// <param name="entityAssetName">实体资源名称。</param>
+            /// <param name="entityAssetAddress">实体资源地址。</param>
             /// <param name="results">要获取的实体。</param>
-            public void GetEntities(string entityAssetName, List<IEntity> results)
+            public void GetEntities(AssetAddress entityAssetAddress, List<IEntity> results)
             {
-                if (string.IsNullOrEmpty(entityAssetName))
+                if (!entityAssetAddress.IsValid())
                 {
-                    throw new GameFrameworkException("Entity asset name is invalid.");
+                    throw new GameFrameworkException("Entity asset address is invalid.");
                 }
 
                 if (results == null)
@@ -289,7 +290,7 @@ namespace EasyGameFramework.Core.Entity
                 results.Clear();
                 foreach (IEntity entity in m_Entities)
                 {
-                    if (entity.EntityAssetName == entityAssetName)
+                    if (entity.EntityAssetAddress == entityAssetAddress)
                     {
                         results.Add(entity);
                     }
@@ -351,7 +352,7 @@ namespace EasyGameFramework.Core.Entity
 
                 if (!m_Entities.Remove(entity))
                 {
-                    throw new GameFrameworkException(Utility.Text.Format("Entity group '{0}' not exists specified entity '[{1}]{2}'.", m_Name, entity.Id, entity.EntityAssetName));
+                    throw new GameFrameworkException(Utility.Text.Format("Entity group '{0}' not exists specified entity '[{1}]{2}'.", m_Name, entity.Id, entity.EntityAssetAddress));
                 }
             }
 

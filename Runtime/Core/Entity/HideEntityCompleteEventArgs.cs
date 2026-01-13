@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.Entity
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace EasyGameFramework.Core.Entity
         public HideEntityCompleteEventArgs()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroup = null;
             UserData = null;
         }
@@ -33,9 +35,9 @@ namespace EasyGameFramework.Core.Entity
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        public string EntityAssetName
+        public AssetAddress EntityAssetAddress
         {
             get;
             private set;
@@ -63,15 +65,15 @@ namespace EasyGameFramework.Core.Entity
         /// 创建隐藏实体完成事件。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroup">实体所属的实体组。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>创建的隐藏实体完成事件。</returns>
-        public static HideEntityCompleteEventArgs Create(int entityId, string entityAssetName, IEntityGroup entityGroup, object userData)
+        public static HideEntityCompleteEventArgs Create(int entityId, AssetAddress entityAssetAddress, IEntityGroup entityGroup, object userData)
         {
             HideEntityCompleteEventArgs hideEntityCompleteEventArgs = ReferencePool.Acquire<HideEntityCompleteEventArgs>();
             hideEntityCompleteEventArgs.EntityId = entityId;
-            hideEntityCompleteEventArgs.EntityAssetName = entityAssetName;
+            hideEntityCompleteEventArgs.EntityAssetAddress = entityAssetAddress;
             hideEntityCompleteEventArgs.EntityGroup = entityGroup;
             hideEntityCompleteEventArgs.UserData = userData;
             return hideEntityCompleteEventArgs;
@@ -83,7 +85,7 @@ namespace EasyGameFramework.Core.Entity
         public override void Clear()
         {
             EntityId = 0;
-            EntityAssetName = null;
+            EntityAssetAddress = AssetAddress.Empty;
             EntityGroup = null;
             UserData = null;
         }

@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System.Collections.Generic;
+using EasyGameFramework.Core.Resource;
 
 namespace EasyGameFramework.Core.Entity
 {
@@ -84,9 +85,9 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 实体组中是否存在实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>实体组中是否存在实体。</returns>
-        bool HasEntity(string entityAssetName);
+        bool HasEntity(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 从实体组中获取实体。
@@ -98,23 +99,23 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 从实体组中获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        IEntity GetEntity(string entityAssetName);
+        IEntity GetEntity(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 从实体组中获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        IEntity[] GetEntities(string entityAssetName);
+        IEntity[] GetEntities(AssetAddress entityAssetAddress);
 
         /// <summary>
         /// 从实体组中获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="results">要获取的实体。</param>
-        void GetEntities(string entityAssetName, List<IEntity> results);
+        void GetEntities(AssetAddress entityAssetAddress, List<IEntity> results);
 
         /// <summary>
         /// 从实体组中获取所有实体。

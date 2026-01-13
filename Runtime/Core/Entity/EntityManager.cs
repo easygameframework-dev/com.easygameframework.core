@@ -325,18 +325,18 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 是否存在实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>是否存在实体。</returns>
-        public bool HasEntity(string entityAssetName)
+        public bool HasEntity(AssetAddress entityAssetAddress)
         {
-            if (string.IsNullOrEmpty(entityAssetName))
+            if (!entityAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("Entity asset name is invalid.");
+                throw new GameFrameworkException("Entity asset address is invalid.");
             }
 
             foreach (KeyValuePair<int, EntityInfo> entityInfo in m_EntityInfos)
             {
-                if (entityInfo.Value.Entity.EntityAssetName == entityAssetName)
+                if (entityInfo.Value.Entity.EntityAssetAddress == entityAssetAddress)
                 {
                     return true;
                 }
@@ -364,18 +364,18 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        public IEntity GetEntity(string entityAssetName)
+        public IEntity GetEntity(AssetAddress entityAssetAddress)
         {
-            if (string.IsNullOrEmpty(entityAssetName))
+            if (!entityAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("Entity asset name is invalid.");
+                throw new GameFrameworkException("Entity asset address is invalid.");
             }
 
             foreach (KeyValuePair<int, EntityInfo> entityInfo in m_EntityInfos)
             {
-                if (entityInfo.Value.Entity.EntityAssetName == entityAssetName)
+                if (entityInfo.Value.Entity.EntityAssetAddress == entityAssetAddress)
                 {
                     return entityInfo.Value.Entity;
                 }
@@ -387,19 +387,19 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <returns>要获取的实体。</returns>
-        public IEntity[] GetEntities(string entityAssetName)
+        public IEntity[] GetEntities(AssetAddress entityAssetAddress)
         {
-            if (string.IsNullOrEmpty(entityAssetName))
+            if (!entityAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("Entity asset name is invalid.");
+                throw new GameFrameworkException("Entity asset address is invalid.");
             }
 
             List<IEntity> results = new List<IEntity>();
             foreach (KeyValuePair<int, EntityInfo> entityInfo in m_EntityInfos)
             {
-                if (entityInfo.Value.Entity.EntityAssetName == entityAssetName)
+                if (entityInfo.Value.Entity.EntityAssetAddress == entityAssetAddress)
                 {
                     results.Add(entityInfo.Value.Entity);
                 }
@@ -411,13 +411,13 @@ namespace EasyGameFramework.Core.Entity
         /// <summary>
         /// 获取实体。
         /// </summary>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="results">要获取的实体。</param>
-        public void GetEntities(string entityAssetName, List<IEntity> results)
+        public void GetEntities(AssetAddress entityAssetAddress, List<IEntity> results)
         {
-            if (string.IsNullOrEmpty(entityAssetName))
+            if (!entityAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("Entity asset name is invalid.");
+                throw new GameFrameworkException("Entity asset address is invalid.");
             }
 
             if (results == null)
@@ -428,7 +428,7 @@ namespace EasyGameFramework.Core.Entity
             results.Clear();
             foreach (KeyValuePair<int, EntityInfo> entityInfo in m_EntityInfos)
             {
-                if (entityInfo.Value.Entity.EntityAssetName == entityAssetName)
+                if (entityInfo.Value.Entity.EntityAssetAddress == entityAssetAddress)
                 {
                     results.Add(entityInfo.Value.Entity);
                 }
@@ -532,12 +532,11 @@ namespace EasyGameFramework.Core.Entity
         /// 显示实体。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroupName">实体组名称。</param>
-        /// <param name="packageName">资源包名称。</param>
         /// <param name="customPriority">加载实体资源的优先级。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void ShowEntity(int entityId, string entityAssetName, string entityGroupName, string packageName, int? customPriority, object userData)
+        public void ShowEntity(int entityId, AssetAddress entityAssetAddress, string entityGroupName, int? customPriority, object userData)
         {
             if (m_ResourceManager == null)
             {
@@ -549,9 +548,9 @@ namespace EasyGameFramework.Core.Entity
                 throw new GameFrameworkException("You must set entity helper first.");
             }
 
-            if (string.IsNullOrEmpty(entityAssetName))
+            if (entityAssetAddress.IsValid())
             {
-                throw new GameFrameworkException("Entity asset name is invalid.");
+                throw new GameFrameworkException("Entity asset address is invalid.");
             }
 
             if (string.IsNullOrEmpty(entityGroupName))
@@ -575,20 +574,17 @@ namespace EasyGameFramework.Core.Entity
                 throw new GameFrameworkException(Utility.Text.Format("Entity group '{0}' is not exist.", entityGroupName));
             }
 
-            EntityInstanceObject entityInstanceObject = entityGroup.SpawnEntityInstanceObject(entityAssetName);
+            EntityInstanceObject entityInstanceObject = entityGroup.SpawnEntityInstanceObject(entityAssetAddress.Location);
             if (entityInstanceObject == null)
             {
                 int serialId = ++m_Serial;
                 m_EntitiesBeingLoaded.Add(entityId, serialId);
 
-                // Use AssetAddress for resource loading
-                string actualPackageName = string.IsNullOrEmpty(packageName) ? "DefaultPackage" : packageName;
-                var assetAddress = new AssetAddress(actualPackageName, entityAssetName);
-                m_ResourceManager.LoadAsset(assetAddress, m_LoadAssetCallbacks, null, customPriority, ShowEntityInfo.Create(serialId, entityId, entityGroup, userData));
+                m_ResourceManager.LoadAsset(entityAssetAddress, m_LoadAssetCallbacks, null, customPriority, ShowEntityInfo.Create(serialId, entityId, entityGroup, userData));
                 return;
             }
 
-            InternalShowEntity(entityId, entityAssetName, entityGroup, entityInstanceObject.Target, false, 0f, userData);
+            InternalShowEntity(entityId, entityAssetAddress, entityGroup, entityInstanceObject.Target, false, 0f, userData);
         }
 
         /// <summary>
@@ -1095,7 +1091,7 @@ namespace EasyGameFramework.Core.Entity
             return null;
         }
 
-        private void InternalShowEntity(int entityId, string entityAssetName, EntityGroup entityGroup, object entityInstance, bool isNewInstance, float duration, object userData)
+        private void InternalShowEntity(int entityId, AssetAddress entityAssetAddress, EntityGroup entityGroup, object entityInstance, bool isNewInstance, float duration, object userData)
         {
             try
             {
@@ -1108,7 +1104,7 @@ namespace EasyGameFramework.Core.Entity
                 EntityInfo entityInfo = EntityInfo.Create(entity);
                 m_EntityInfos.Add(entityId, entityInfo);
                 entityInfo.Status = EntityStatus.WillInit;
-                entity.OnInit(entityId, entityAssetName, entityGroup, isNewInstance, userData);
+                entity.OnInit(entityId, entityAssetAddress, entityGroup, isNewInstance, userData);
                 entityInfo.Status = EntityStatus.Inited;
                 entityGroup.AddEntity(entity);
                 entityInfo.Status = EntityStatus.WillShow;
@@ -1126,7 +1122,7 @@ namespace EasyGameFramework.Core.Entity
             {
                 if (m_ShowEntityFailureEventHandler != null)
                 {
-                    ShowEntityFailureEventArgs showEntityFailureEventArgs = ShowEntityFailureEventArgs.Create(entityId, entityAssetName, entityGroup.Name, exception.ToString(), userData);
+                    ShowEntityFailureEventArgs showEntityFailureEventArgs = ShowEntityFailureEventArgs.Create(entityId, entityAssetAddress, entityGroup.Name, exception.ToString(), userData);
                     m_ShowEntityFailureEventHandler(this, showEntityFailureEventArgs);
                     ReferencePool.Release(showEntityFailureEventArgs);
                     return;
@@ -1169,7 +1165,7 @@ namespace EasyGameFramework.Core.Entity
 
             if (m_HideEntityCompleteEventHandler != null)
             {
-                HideEntityCompleteEventArgs hideEntityCompleteEventArgs = HideEntityCompleteEventArgs.Create(entity.Id, entity.EntityAssetName, entityGroup, userData);
+                HideEntityCompleteEventArgs hideEntityCompleteEventArgs = HideEntityCompleteEventArgs.Create(entity.Id, entity.EntityAssetAddress, entityGroup, userData);
                 m_HideEntityCompleteEventHandler(this, hideEntityCompleteEventArgs);
                 ReferencePool.Release(hideEntityCompleteEventArgs);
             }
@@ -1197,7 +1193,8 @@ namespace EasyGameFramework.Core.Entity
             EntityInstanceObject entityInstanceObject = EntityInstanceObject.Create(entityAssetName, entityAsset, m_EntityHelper.InstantiateEntity(entityAsset), m_EntityHelper);
             showEntityInfo.EntityGroup.RegisterEntityInstanceObject(entityInstanceObject, true);
 
-            InternalShowEntity(showEntityInfo.EntityId, entityAssetName, showEntityInfo.EntityGroup, entityInstanceObject.Target, true, duration, showEntityInfo.UserData);
+            AssetAddress entityAssetAddress = new AssetAddress(packageName, entityAssetName);
+            InternalShowEntity(showEntityInfo.EntityId, entityAssetAddress, showEntityInfo.EntityGroup, entityInstanceObject.Target, true, duration, showEntityInfo.UserData);
             ReferencePool.Release(showEntityInfo);
         }
 
@@ -1219,7 +1216,8 @@ namespace EasyGameFramework.Core.Entity
             string appendErrorMessage = Utility.Text.Format("Load entity failure, asset name '{0}', status '{1}', error message '{2}'.", entityAssetName, status, errorMessage);
             if (m_ShowEntityFailureEventHandler != null)
             {
-                ShowEntityFailureEventArgs showEntityFailureEventArgs = ShowEntityFailureEventArgs.Create(showEntityInfo.EntityId, entityAssetName, showEntityInfo.EntityGroup.Name, appendErrorMessage, showEntityInfo.UserData);
+                AssetAddress entityAssetAddress = new AssetAddress(packageName, entityAssetName);
+                ShowEntityFailureEventArgs showEntityFailureEventArgs = ShowEntityFailureEventArgs.Create(showEntityInfo.EntityId, entityAssetAddress, showEntityInfo.EntityGroup.Name, appendErrorMessage, showEntityInfo.UserData);
                 m_ShowEntityFailureEventHandler(this, showEntityFailureEventArgs);
                 ReferencePool.Release(showEntityFailureEventArgs);
                 return;

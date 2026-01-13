@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core.Entity
 {
     /// <summary>
@@ -21,9 +23,9 @@ namespace EasyGameFramework.Core.Entity
         }
 
         /// <summary>
-        /// 获取实体资源名称。
+        /// 获取实体资源地址。
         /// </summary>
-        string EntityAssetName
+        AssetAddress EntityAssetAddress
         {
             get;
         }
@@ -48,11 +50,11 @@ namespace EasyGameFramework.Core.Entity
         /// 实体初始化。
         /// </summary>
         /// <param name="entityId">实体编号。</param>
-        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityAssetAddress">实体资源地址。</param>
         /// <param name="entityGroup">实体所属的实体组。</param>
         /// <param name="isNewInstance">是否是新实例。</param>
         /// <param name="userData">用户自定义数据。</param>
-        void OnInit(int entityId, string entityAssetName, IEntityGroup entityGroup, bool isNewInstance, object userData);
+        void OnInit(int entityId, AssetAddress entityAssetAddress, IEntityGroup entityGroup, bool isNewInstance, object userData);
 
         /// <summary>
         /// 实体回收。
