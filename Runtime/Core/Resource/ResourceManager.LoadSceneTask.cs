@@ -26,7 +26,7 @@
             {
                 if (m_LoadSceneCallbacks.LoadSceneSuccessCallback != null)
                 {
-                    m_LoadSceneCallbacks.LoadSceneSuccessCallback(Address, assetObject.Asset, duration, UserData);
+                    m_LoadSceneCallbacks.LoadSceneSuccessCallback(AssetAddress, assetObject.Asset, duration, UserData);
                 }
             }
 
@@ -34,7 +34,7 @@
             {
                 if (m_LoadSceneCallbacks.LoadSceneFailureCallback != null)
                 {
-                    m_LoadSceneCallbacks.LoadSceneFailureCallback(Address, status, errorMessage, UserData);
+                    m_LoadSceneCallbacks.LoadSceneFailureCallback(AssetAddress, status, errorMessage, UserData);
                 }
             }
         }

@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.DataTable;
+using EasyGameFramework.Core.Resource;
 using System;
 using System.IO;
 using System.Text;
@@ -27,16 +28,16 @@ namespace EasyGameFramework
         /// 读取数据表。
         /// </summary>
         /// <param name="dataTable">数据表。</param>
-        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        /// <param name="dataTableAssetAddress">数据表资源地址。</param>
         /// <param name="dataTableAsset">数据表资源。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取数据表成功。</returns>
-        public override bool ReadData(DataTableBase dataTable, string dataTableAssetName, object dataTableAsset, object userData)
+        public override bool ReadData(DataTableBase dataTable, AssetAddress dataTableAssetAddress, object dataTableAsset, object userData)
         {
             TextAsset dataTableTextAsset = dataTableAsset as TextAsset;
             if (dataTableTextAsset != null)
             {
-                if (dataTableAssetName.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
+                if (dataTableAssetAddress.Location.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
                 {
                     return dataTable.ParseData(dataTableTextAsset.bytes, userData);
                 }
@@ -46,7 +47,7 @@ namespace EasyGameFramework
                 }
             }
 
-            Log.Warning("Data table asset '{0}' is invalid.", dataTableAssetName);
+            Log.Warning("Data table asset '{0}' is invalid.", dataTableAssetAddress);
             return false;
         }
 
@@ -54,15 +55,15 @@ namespace EasyGameFramework
         /// 读取数据表。
         /// </summary>
         /// <param name="dataTable">数据表。</param>
-        /// <param name="dataTableAssetName">数据表资源名称。</param>
+        /// <param name="dataTableAssetAddress">数据表资源地址。</param>
         /// <param name="dataTableBytes">数据表二进制流。</param>
         /// <param name="startIndex">数据表二进制流的起始位置。</param>
         /// <param name="length">数据表二进制流的长度。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取数据表成功。</returns>
-        public override bool ReadData(DataTableBase dataTable, string dataTableAssetName, byte[] dataTableBytes, int startIndex, int length, object userData)
+        public override bool ReadData(DataTableBase dataTable, AssetAddress dataTableAssetAddress, byte[] dataTableBytes, int startIndex, int length, object userData)
         {
-            if (dataTableAssetName.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
+            if (dataTableAssetAddress.Location.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
             {
                 return dataTable.ParseData(dataTableBytes, startIndex, length, userData);
             }

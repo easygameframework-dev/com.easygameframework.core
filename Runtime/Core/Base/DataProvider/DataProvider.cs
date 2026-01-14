@@ -325,8 +325,7 @@ namespace EasyGameFramework.Core
         {
             try
             {
-                //TODO DataProviderHelper的api重构
-                if (!m_DataProviderHelper.ReadData(m_Owner, assetAddress.Location, dataAsset, userData))
+                if (!m_DataProviderHelper.ReadData(m_Owner, assetAddress, dataAsset, userData))
                 {
                     throw new GameFrameworkException(Utility.Text.Format("Load data failure in data provider helper, data asset name '{0}'.", assetAddress));
                 }

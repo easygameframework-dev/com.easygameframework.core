@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Config;
+using EasyGameFramework.Core.Resource;
 using System;
 using System.IO;
 using System.Text;
@@ -29,16 +30,16 @@ namespace EasyGameFramework
         /// 读取全局配置。
         /// </summary>
         /// <param name="configManager">全局配置管理器。</param>
-        /// <param name="configAssetName">全局配置资源名称。</param>
+        /// <param name="configAssetAddress">全局配置资源地址。</param>
         /// <param name="configAsset">全局配置资源。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取全局配置成功。</returns>
-        public override bool ReadData(IConfigManager configManager, string configAssetName, object configAsset, object userData)
+        public override bool ReadData(IConfigManager configManager, AssetAddress configAssetAddress, object configAsset, object userData)
         {
             TextAsset configTextAsset = configAsset as TextAsset;
             if (configTextAsset != null)
             {
-                if (configAssetName.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
+                if (configAssetAddress.Location.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
                 {
                     return configManager.ParseData(configTextAsset.bytes, userData);
                 }
@@ -48,7 +49,7 @@ namespace EasyGameFramework
                 }
             }
 
-            Log.Warning("Config asset '{0}' is invalid.", configAssetName);
+            Log.Warning("Config asset '{0}' is invalid.", configAssetAddress);
             return false;
         }
 
@@ -56,15 +57,15 @@ namespace EasyGameFramework
         /// 读取全局配置。
         /// </summary>
         /// <param name="configManager">全局配置管理器。</param>
-        /// <param name="configAssetName">全局配置资源名称。</param>
+        /// <param name="configAssetAddress">全局配置资源地址。</param>
         /// <param name="configBytes">全局配置二进制流。</param>
         /// <param name="startIndex">全局配置二进制流的起始位置。</param>
         /// <param name="length">全局配置二进制流的长度。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取全局配置成功。</returns>
-        public override bool ReadData(IConfigManager configManager, string configAssetName, byte[] configBytes, int startIndex, int length, object userData)
+        public override bool ReadData(IConfigManager configManager, AssetAddress configAssetAddress, byte[] configBytes, int startIndex, int length, object userData)
         {
-            if (configAssetName.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
+            if (configAssetAddress.Location.EndsWith(BytesAssetExtension, StringComparison.Ordinal))
             {
                 return configManager.ParseData(configBytes, startIndex, length, userData);
             }

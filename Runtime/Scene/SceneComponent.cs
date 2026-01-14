@@ -25,7 +25,7 @@ namespace EasyGameFramework
     {
         private ISceneManager m_SceneManager = null;
         private EventComponent m_EventComponent = null;
-        private readonly Dictionary<AssetAddress, string> m_SceneAssetNameToSceneName = new Dictionary<AssetAddress, string>();
+        private readonly Dictionary<AssetAddress, string> m_SceneAssetAddressToSceneName = new Dictionary<AssetAddress, string>();
         private readonly Dictionary<AssetAddress, int> m_SceneOrder = new Dictionary<AssetAddress, int>();
         private Camera m_MainCamera = null;
         private Scene m_GameFrameworkScene = default(Scene);
@@ -91,24 +91,24 @@ namespace EasyGameFramework
         /// <summary>
         /// 获取场景名称。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <returns>场景名称。</returns>
-        public string GetSceneName(AssetAddress sceneAssetName)
+        public string GetSceneName(AssetAddress sceneAssetAddress)
         {
-            // if (string.IsNullOrEmpty(sceneAssetName))
+            // if (string.IsNullOrEmpty(sceneAssetAddress))
             // {
             //     Log.Error("Scene asset name is invalid.");
             //     return null;
             // }
             //
-            // int sceneNamePosition = sceneAssetName.LastIndexOf('/');
-            // if (sceneNamePosition + 1 >= sceneAssetName.Length)
+            // int sceneNamePosition = sceneAssetAddress.LastIndexOf('/');
+            // if (sceneNamePosition + 1 >= sceneAssetAddress.Length)
             // {
-            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetAddress);
             //     return null;
             // }
             //
-            // string sceneName = sceneAssetName.Substring(sceneNamePosition + 1);
+            // string sceneName = sceneAssetAddress.Substring(sceneNamePosition + 1);
             // sceneNamePosition = sceneName.LastIndexOf(".unity");
             // if (sceneNamePosition > 0)
             // {
@@ -117,199 +117,172 @@ namespace EasyGameFramework
             //
             // return sceneName;
 
-            if (m_SceneAssetNameToSceneName.TryGetValue(sceneAssetName, out var sceneName))
+            if (m_SceneAssetAddressToSceneName.TryGetValue(sceneAssetAddress, out var sceneName))
             {
                 return sceneName;
             }
-            Log.Error("Scene asset name '{0}' is not loaded.", sceneAssetName);
+            Log.Error("Scene asset name '{0}' is not loaded.", sceneAssetAddress);
             return null;
         }
 
         /// <summary>
         /// 获取场景是否已加载。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <returns>场景是否已加载。</returns>
-        public bool SceneIsLoaded(AssetAddress sceneAssetName)
+        public bool SceneIsLoaded(AssetAddress sceneAssetAddress)
         {
-            return m_SceneManager.SceneIsLoaded(sceneAssetName);
+            return m_SceneManager.SceneIsLoaded(sceneAssetAddress);
         }
 
         /// <summary>
-        /// 获取已加载场景的资源名称。
+        /// 获取已加载场景的资源地址。
         /// </summary>
-        /// <returns>已加载场景的资源名称。</returns>
-        public AssetAddress[] GetLoadedSceneAssetNames()
+        /// <returns>已加载场景的资源地址。</returns>
+        public AssetAddress[] GetLoadedSceneAssetAddresses()
         {
-            return m_SceneManager.GetLoadedSceneAssetNames();
-        }
-
-        /// <summary>
-        /// 获取已加载场景的资源名称。
-        /// </summary>
-        /// <param name="results">已加载场景的资源名称。</param>
-        public void GetLoadedSceneAssetNames(List<AssetAddress> results)
-        {
-            m_SceneManager.GetLoadedSceneAssetNames(results);
+            return m_SceneManager.GetLoadedSceneAssetAddresses();
         }
 
         /// <summary>
         /// 获取场景是否正在加载。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <returns>场景是否正在加载。</returns>
-        public bool SceneIsLoading(AssetAddress sceneAssetName)
+        public bool SceneIsLoading(AssetAddress sceneAssetAddress)
         {
-            return m_SceneManager.SceneIsLoading(sceneAssetName);
+            return m_SceneManager.SceneIsLoading(sceneAssetAddress);
         }
 
         /// <summary>
-        /// 获取正在加载场景的资源名称。
+        /// 获取正在加载场景的资源地址。
         /// </summary>
-        /// <returns>正在加载场景的资源名称。</returns>
-        public AssetAddress[] GetLoadingSceneAssetNames()
+        /// <returns>正在加载场景的资源地址。</returns>
+        public AssetAddress[] GetLoadingSceneAssetAddresses()
         {
-            return m_SceneManager.GetLoadingSceneAssetNames();
-        }
-
-        /// <summary>
-        /// 获取正在加载场景的资源名称。
-        /// </summary>
-        /// <param name="results">正在加载场景的资源名称。</param>
-        public void GetLoadingSceneAssetNames(List<AssetAddress> results)
-        {
-            m_SceneManager.GetLoadingSceneAssetNames(results);
+            return m_SceneManager.GetLoadingSceneAssetAddresses();
         }
 
         /// <summary>
         /// 获取场景是否正在卸载。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <returns>场景是否正在卸载。</returns>
-        public bool SceneIsUnloading(AssetAddress sceneAssetName)
+        public bool SceneIsUnloading(AssetAddress sceneAssetAddress)
         {
-            return m_SceneManager.SceneIsUnloading(sceneAssetName);
+            return m_SceneManager.SceneIsUnloading(sceneAssetAddress);
         }
 
         /// <summary>
-        /// 获取正在卸载场景的资源名称。
+        /// 获取正在卸载场景的资源地址。
         /// </summary>
-        /// <returns>正在卸载场景的资源名称。</returns>
-        public AssetAddress[] GetUnloadingSceneAssetNames()
+        /// <returns>正在卸载场景的资源地址。</returns>
+        public AssetAddress[] GetUnloadingSceneAssetAddresses()
         {
-            return m_SceneManager.GetUnloadingSceneAssetNames();
-        }
-
-        /// <summary>
-        /// 获取正在卸载场景的资源名称。
-        /// </summary>
-        /// <param name="results">正在卸载场景的资源名称。</param>
-        public void GetUnloadingSceneAssetNames(List<AssetAddress> results)
-        {
-            m_SceneManager.GetUnloadingSceneAssetNames(results);
+            return m_SceneManager.GetUnloadingSceneAssetAddresses();
         }
 
         /// <summary>
         /// 检查场景资源是否存在。
         /// </summary>
-        /// <param name="sceneAssetName">要检查场景资源的名称。</param>
+        /// <param name="sceneAssetAddress">要检查场景资源的名称。</param>
         /// <returns>场景资源是否存在。</returns>
-        public bool HasScene(AssetAddress sceneAssetName)
+        public bool HasScene(AssetAddress sceneAssetAddress)
         {
-            if (!sceneAssetName.IsValid())
+            if (!sceneAssetAddress.IsValid())
             {
                 Log.Error("Scene asset name is invalid.");
                 return false;
             }
 
-            // if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            // if (!sceneAssetAddress.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetAddress.EndsWith(".unity", StringComparison.Ordinal))
             // {
-            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetAddress);
             //     return false;
             // }
 
-            return m_SceneManager.HasScene(sceneAssetName);
+            return m_SceneManager.HasScene(sceneAssetAddress);
         }
 
         /// <summary>
         /// 加载场景。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <param name="customPriority">加载场景资源的优先级。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(AssetAddress sceneAssetName, int? customPriority = null, object userData = null)
+        public void LoadScene(AssetAddress sceneAssetAddress, int? customPriority = null, object userData = null)
         {
-            if (!sceneAssetName.IsValid())
+            if (!sceneAssetAddress.IsValid())
             {
                 Log.Error("Scene asset name is invalid.");
                 return;
             }
 
-            // if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            // if (!sceneAssetAddress.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetAddress.EndsWith(".unity", StringComparison.Ordinal))
             // {
-            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetAddress);
             //     return;
             // }
 
-            m_SceneManager.LoadScene(sceneAssetName, customPriority, userData);
+            m_SceneManager.LoadScene(sceneAssetAddress, customPriority, userData);
         }
 
         /// <summary>
         /// 卸载场景。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void UnloadScene(AssetAddress sceneAssetName, object userData = null)
+        public void UnloadScene(AssetAddress sceneAssetAddress, object userData = null)
         {
-            if (!sceneAssetName.IsValid())
+            if (!sceneAssetAddress.IsValid())
             {
                 Log.Error("Scene asset name is invalid.");
                 return;
             }
 
-            // if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            // if (!sceneAssetAddress.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetAddress.EndsWith(".unity", StringComparison.Ordinal))
             // {
-            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetAddress);
             //     return;
             // }
 
-            m_SceneManager.UnloadScene(sceneAssetName, userData);
-            m_SceneOrder.Remove(sceneAssetName);
+            m_SceneManager.UnloadScene(sceneAssetAddress, userData);
+            m_SceneOrder.Remove(sceneAssetAddress);
         }
 
         /// <summary>
         /// 设置场景顺序。
         /// </summary>
-        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneAssetAddress">场景资源地址。</param>
         /// <param name="sceneOrder">要设置的场景顺序。</param>
-        public void SetSceneOrder(AssetAddress sceneAssetName, int sceneOrder)
+        public void SetSceneOrder(AssetAddress sceneAssetAddress, int sceneOrder)
         {
-            if (!sceneAssetName.IsValid())
+            if (!sceneAssetAddress.IsValid())
             {
                 Log.Error("Scene asset name is invalid.");
                 return;
             }
 
-            // if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            // if (!sceneAssetAddress.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetAddress.EndsWith(".unity", StringComparison.Ordinal))
             // {
-            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+            //     Log.Error("Scene asset name '{0}' is invalid.", sceneAssetAddress);
             //     return;
             // }
 
-            if (SceneIsLoading(sceneAssetName))
+            if (SceneIsLoading(sceneAssetAddress))
             {
-                m_SceneOrder[sceneAssetName] = sceneOrder;
+                m_SceneOrder[sceneAssetAddress] = sceneOrder;
                 return;
             }
 
-            if (SceneIsLoaded(sceneAssetName))
+            if (SceneIsLoaded(sceneAssetAddress))
             {
-                m_SceneOrder[sceneAssetName] = sceneOrder;
+                m_SceneOrder[sceneAssetAddress] = sceneOrder;
                 RefreshSceneOrder();
                 return;
             }
 
-            Log.Error("Scene '{0}' is not loaded or loading.", sceneAssetName);
+            Log.Error("Scene '{0}' is not loaded or loading.", sceneAssetAddress);
         }
 
         /// <summary>
@@ -382,7 +355,7 @@ namespace EasyGameFramework
 
         private void OnLoadSceneSuccess(object sender, EasyGameFramework.Core.Scene.LoadSceneSuccessEventArgs e)
         {
-            m_SceneAssetNameToSceneName[e.SceneAssetAddress] = ((Scene)e.SceneAsset).name;
+            m_SceneAssetAddressToSceneName[e.SceneAssetAddress] = ((Scene)e.SceneAsset).name;
             if (!m_SceneOrder.ContainsKey(e.SceneAssetAddress))
             {
                 m_SceneOrder.Add(e.SceneAssetAddress, 0);
@@ -400,7 +373,7 @@ namespace EasyGameFramework
 
         private void OnUnloadSceneSuccess(object sender, EasyGameFramework.Core.Scene.UnloadSceneSuccessEventArgs e)
         {
-            m_SceneAssetNameToSceneName.Remove(e.SceneAssetAddress);
+            m_SceneAssetAddressToSceneName.Remove(e.SceneAssetAddress);
             m_EventComponent.Fire(this, UnloadSceneSuccessEventArgs.Create(e));
             m_SceneOrder.Remove(e.SceneAssetAddress);
             RefreshSceneOrder();

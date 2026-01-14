@@ -5,6 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using EasyGameFramework.Core.Resource;
+
 namespace EasyGameFramework.Core
 {
     /// <summary>
@@ -16,23 +18,23 @@ namespace EasyGameFramework.Core
         /// 读取数据。
         /// </summary>
         /// <param name="dataProviderOwner">数据提供者的持有者。</param>
-        /// <param name="dataAssetName">内容资源名称。</param>
+        /// <param name="dataAssetAddress">内容资源地址。</param>
         /// <param name="dataAsset">内容资源。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取数据成功。</returns>
-        bool ReadData(T dataProviderOwner, string dataAssetName, object dataAsset, object userData);
+        bool ReadData(T dataProviderOwner, AssetAddress dataAssetAddress, object dataAsset, object userData);
 
         /// <summary>
         /// 读取数据。
         /// </summary>
         /// <param name="dataProviderOwner">数据提供者的持有者。</param>
-        /// <param name="dataAssetName">内容资源名称。</param>
+        /// <param name="dataAssetAddress">内容资源地址。</param>
         /// <param name="dataBytes">内容二进制流。</param>
         /// <param name="startIndex">内容二进制流的起始位置。</param>
         /// <param name="length">内容二进制流的长度。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取数据成功。</returns>
-        bool ReadData(T dataProviderOwner, string dataAssetName, byte[] dataBytes, int startIndex, int length, object userData);
+        bool ReadData(T dataProviderOwner, AssetAddress dataAssetAddress, byte[] dataBytes, int startIndex, int length, object userData);
 
         /// <summary>
         /// 解析内容。

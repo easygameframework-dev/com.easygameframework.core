@@ -37,9 +37,9 @@ namespace EasyGameFramework.Editor
 
             if (EditorApplication.isPlaying && IsPrefabInHierarchy(t.gameObject))
             {
-                EditorGUILayout.LabelField("Loaded Scene Asset Names", GetSceneNameString(t.GetLoadedSceneAssetNames()));
-                EditorGUILayout.LabelField("Loading Scene Asset Names", GetSceneNameString(t.GetLoadingSceneAssetNames()));
-                EditorGUILayout.LabelField("Unloading Scene Asset Names", GetSceneNameString(t.GetUnloadingSceneAssetNames()));
+                EditorGUILayout.LabelField("Loaded Scene Asset Names", GetSceneNameString(t.GetLoadedSceneAssetAddresses()));
+                EditorGUILayout.LabelField("Loading Scene Asset Names", GetSceneNameString(t.GetLoadingSceneAssetAddresses()));
+                EditorGUILayout.LabelField("Unloading Scene Asset Names", GetSceneNameString(t.GetUnloadingSceneAssetAddresses()));
                 EditorGUILayout.ObjectField("Main Camera", t.MainCamera, typeof(Camera), true);
 
                 Repaint();
@@ -52,22 +52,22 @@ namespace EasyGameFramework.Editor
             // m_EnableLoadSceneDependencyAssetEvent = serializedObject.FindProperty("m_EnableLoadSceneDependencyAssetEvent");
         }
 
-        private string GetSceneNameString(AssetAddress[] sceneAssetNames)
+        private string GetSceneNameString(AssetAddress[] sceneAssetAddresses)
         {
-            if (sceneAssetNames == null || sceneAssetNames.Length <= 0)
+            if (sceneAssetAddresses == null || sceneAssetAddresses.Length <= 0)
             {
                 return "<Empty>";
             }
 
             string sceneNameString = string.Empty;
-            foreach (AssetAddress sceneAssetName in sceneAssetNames)
+            foreach (AssetAddress sceneAssetAddress in sceneAssetAddresses)
             {
                 if (!string.IsNullOrEmpty(sceneNameString))
                 {
                     sceneNameString += ", ";
                 }
 
-                sceneNameString += ((SceneComponent)target).GetSceneName(sceneAssetName);
+                sceneNameString += ((SceneComponent)target).GetSceneName(sceneAssetAddress);
             }
 
             return sceneNameString;

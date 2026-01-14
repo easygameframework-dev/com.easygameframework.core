@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Config;
+using EasyGameFramework.Core.Resource;
 using UnityEngine;
 
 namespace EasyGameFramework
@@ -20,23 +21,23 @@ namespace EasyGameFramework
         /// 读取全局配置。
         /// </summary>
         /// <param name="configManager">全局配置管理器。</param>
-        /// <param name="configAssetName">全局配置资源名称。</param>
+        /// <param name="configAssetAddress">全局配置资源地址。</param>
         /// <param name="configAsset">全局配置资源。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取全局配置成功。</returns>
-        public abstract bool ReadData(IConfigManager configManager, string configAssetName, object configAsset, object userData);
+        public abstract bool ReadData(IConfigManager configManager, AssetAddress configAssetAddress, object configAsset, object userData);
 
         /// <summary>
         /// 读取全局配置。
         /// </summary>
         /// <param name="configManager">全局配置管理器。</param>
-        /// <param name="configAssetName">全局配置资源名称。</param>
+        /// <param name="configAssetAddress">全局配置资源地址。</param>
         /// <param name="configBytes">全局配置二进制流。</param>
         /// <param name="startIndex">全局配置二进制流的起始位置。</param>
         /// <param name="length">全局配置二进制流的长度。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取全局配置成功。</returns>
-        public abstract bool ReadData(IConfigManager configManager, string configAssetName, byte[] configBytes, int startIndex, int length, object userData);
+        public abstract bool ReadData(IConfigManager configManager, AssetAddress configAssetAddress, byte[] configBytes, int startIndex, int length, object userData);
 
         /// <summary>
         /// 解析全局配置。

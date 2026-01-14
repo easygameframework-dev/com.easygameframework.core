@@ -11,9 +11,7 @@ namespace EasyGameFramework.Core.Resource
             private AssetAddress m_AssetAddress;
             private Type m_AssetType;
 
-            public AssetAddress Address => m_AssetAddress;
-            public string PackageName => m_AssetAddress.PackageName;
-            public string AssetName => m_AssetAddress.Location;
+            public AssetAddress AssetAddress => m_AssetAddress;
             public Type AssetType => m_AssetType;
 
             public DateTime StartTime { get; set; }

@@ -7,6 +7,7 @@
 
 using EasyGameFramework.Core;
 using EasyGameFramework.Core.Localization;
+using EasyGameFramework.Core.Resource;
 using UnityEngine;
 
 namespace EasyGameFramework
@@ -28,23 +29,23 @@ namespace EasyGameFramework
         /// 读取字典。
         /// </summary>
         /// <param name="localizationManager">本地化管理器。</param>
-        /// <param name="dictionaryAssetName">字典资源名称。</param>
+        /// <param name="dictionaryAssetAddress">字典资源地址。</param>
         /// <param name="dictionaryAsset">字典资源。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取字典成功。</returns>
-        public abstract bool ReadData(ILocalizationManager localizationManager, string dictionaryAssetName, object dictionaryAsset, object userData);
+        public abstract bool ReadData(ILocalizationManager localizationManager, AssetAddress dictionaryAssetAddress, object dictionaryAsset, object userData);
 
         /// <summary>
         /// 读取字典。
         /// </summary>
         /// <param name="localizationManager">本地化管理器。</param>
-        /// <param name="dictionaryAssetName">字典资源名称。</param>
+        /// <param name="dictionaryAssetAddress">字典资源地址。</param>
         /// <param name="dictionaryBytes">字典二进制流。</param>
         /// <param name="startIndex">字典二进制流的起始位置。</param>
         /// <param name="length">字典二进制流的长度。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>是否读取字典成功。</returns>
-        public abstract bool ReadData(ILocalizationManager localizationManager, string dictionaryAssetName, byte[] dictionaryBytes, int startIndex, int length, object userData);
+        public abstract bool ReadData(ILocalizationManager localizationManager, AssetAddress dictionaryAssetAddress, byte[] dictionaryBytes, int startIndex, int length, object userData);
 
         /// <summary>
         /// 解析字典。

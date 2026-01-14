@@ -13,7 +13,7 @@ namespace EasyGameFramework.Core.Resource
             private readonly string m_ReadOnlyPath;
             private readonly string m_ReadWritePath;
 
-            private static readonly HashSet<string> s_LoadingAssetNames = new HashSet<string>();
+            private static readonly HashSet<AssetAddress> s_LoadingAssetAddresses = new HashSet<AssetAddress>();
 
             public LoadResourceAgent(ILoadResourceAgentHelper loadResourceAgentHelper,ResourceLoader resourceLoader, string readOnlyPath, string readWritePath)
             {
@@ -48,8 +48,7 @@ namespace EasyGameFramework.Core.Resource
                     throw new GameFrameworkException("Task is invalid.");
                 }
 
-                string key = task.Address.ToString();
-                if (s_LoadingAssetNames.Contains(key))
+                if (s_LoadingAssetAddresses.Contains(task.AssetAddress))
                 {
                     m_Task.StartTime = default(DateTime);
                     return StartTaskStatus.HasToWait;
@@ -58,7 +57,7 @@ namespace EasyGameFramework.Core.Resource
                 m_Task = task;
                 m_Task.StartTime = DateTime.UtcNow;
 
-                m_LoadResourceAgentHelper.LoadAsset(task.Address, task.AssetType, task.IsScene, task.UserData);
+                m_LoadResourceAgentHelper.LoadAsset(task.AssetAddress, task.AssetType, task.IsScene, task.UserData);
                 return StartTaskStatus.CanResume;
             }
 
@@ -72,18 +71,16 @@ namespace EasyGameFramework.Core.Resource
             {
                 m_LoadResourceAgentHelper.Reset();
                 m_Task.OnLoadAssetFailure(this, e.Status, e.ErrorMessage);
-                string key = m_Task.Address.ToString();
-                s_LoadingAssetNames.Remove(key);
+                s_LoadingAssetAddresses.Remove(m_Task.AssetAddress);
                 m_Task.Done = true;
             }
 
             private void OnLoadResourceAgentHelperLoadComplete(object sender, LoadResourceAgentHelperLoadCompleteEventArgs e)
             {
-                string key = m_Task.Address.ToString();
-                s_LoadingAssetNames.Remove(key);
+                s_LoadingAssetAddresses.Remove(m_Task.AssetAddress);
                 m_LoadResourceAgentHelper.Reset();
 
-                m_ResourceLoader.RegisterAsset(m_Task.Address, e.AssetObject);
+                m_ResourceLoader.RegisterAsset(m_Task.AssetAddress, e.AssetObject);
                 m_Task.OnLoadAssetSuccess(this, e.AssetObject, (float)(DateTime.UtcNow - m_Task.StartTime).TotalSeconds);
                 m_Task.Done = true;
             }
